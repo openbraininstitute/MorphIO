@@ -1,15 +1,26 @@
 #pragma once
 
+#if !gsl_CONFIG_ALLOWS_SPAN_COMPARISON
+#include <algorithm>
+#endif
 #include <array>
 #include <cmath>  // M_PI
 #include <vector>
 
-#include <gsl/gsl-lite.hpp>
+#include <gsl-lite/gsl-lite.hpp>
 
 namespace morphio {
 
 template <typename T>
-using range = gsl::span<T>;
+using range = gsl_lite::span<T>;
+
+#if !gsl_CONFIG_ALLOWS_SPAN_COMPARISON
+template <typename T>
+inline bool operator==(morphio::range<T> l, morphio::range<T> r) {
+    return l.size() == r.size() &&
+           (l.data() == r.data() || std::equal(l.begin(), l.end(), r.begin()));
+}
+#endif
 
 #ifdef MORPHIO_USE_DOUBLE
 using floatType = double;
