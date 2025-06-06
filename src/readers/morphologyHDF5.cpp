@@ -197,7 +197,7 @@ void MorphologyHDF5::_readPoints(int firstSectionOffset) {
     std::vector<std::array<floatType, pointColumns>> hdf5Data(numberPoints);
 
     if (!hdf5Data.empty()) {
-        pointsDataSet.read(hdf5Data.front().data());
+        pointsDataSet.read_raw(hdf5Data.front().data());
     }
 
     const bool hasSoma = firstSectionOffset != 0;
@@ -254,7 +254,7 @@ int MorphologyHDF5::_readSections() {
 
     std::vector<std::array<int, structureV1Columns>> vec(dims[0]);
     if (dims[0] > 0) {
-        structure.read(vec.front().data());
+        structure.read_raw(vec.front().data());
     }
 
     assert(!vec.empty());
