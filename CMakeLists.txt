@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.5)
 #allow using of HDF5_ROOT for building with a custom HDF5 version
 cmake_policy(SET CMP0074 NEW)
 project(MorphIO VERSION 2.0.0)
