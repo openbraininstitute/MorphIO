@@ -5,7 +5,12 @@ if (NOT EXTERNAL_HIGHFIVE)
   set(HIGHFIVE_UNIT_TESTS OFF CACHE BOOL "" FORCE)
   set(HIGHFIVE_USE_BOOST OFF CACHE BOOL "" FORCE)
   set(HIGHFIVE_USE_INSTALL_DEPS ON CACHE BOOL "" FORCE)
+
+  morphio_variable_push(CMAKE_POLICY_VERSION_MINIMUM)
+  set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
   add_subdirectory(HighFive)
+  morphio_variable_pop(CMAKE_POLICY_VERSION_MINIMUM)
+
   target_include_directories(HighFive SYSTEM INTERFACE)
 endif()
 

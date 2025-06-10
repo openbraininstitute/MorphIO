@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.2...3.12)
 #allow using of HDF5_ROOT for building with a custom HDF5 version
 cmake_policy(SET CMP0074 NEW)
 project(MorphIO VERSION 2.0.0)
@@ -32,7 +32,9 @@ else()
 endif()
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMake)
+
 include(CompilerFlags)
+include(helpers)
 
 set(CMAKE_CXX_FLAGS "${FLAGS}")
 
@@ -45,6 +47,7 @@ endif()
 if (EXTERNAL_PYBIND11)
   find_package(pybind11 REQUIRED CONFIG)
 endif()
+
 set(MORPHIO_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include/)
 
 add_subdirectory(3rdparty)
@@ -71,7 +74,6 @@ install(
   FILES ${CMAKE_CURRENT_LIST_DIR}/CMake/MorphIOConfig.cmake
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/MorphIO
   )
-
 
 if (MORPHIO_TESTS)
   enable_testing()
