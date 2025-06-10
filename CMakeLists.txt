@@ -32,7 +32,9 @@ else()
 endif()
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMake)
+
 include(CompilerFlags)
+include(helpers)
 
 set(CMAKE_CXX_FLAGS "${FLAGS}")
 
@@ -45,6 +47,7 @@ endif()
 if (EXTERNAL_PYBIND11)
   find_package(pybind11 REQUIRED CONFIG)
 endif()
+
 set(MORPHIO_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include/)
 
 add_subdirectory(3rdparty)
@@ -71,7 +74,6 @@ install(
   FILES ${CMAKE_CURRENT_LIST_DIR}/CMake/MorphIOConfig.cmake
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/MorphIO
   )
-
 
 if (MORPHIO_TESTS)
   enable_testing()
