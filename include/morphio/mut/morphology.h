@@ -35,7 +35,7 @@ class Morphology
     Morphology(std::shared_ptr<WarningHandler> warning_handler = nullptr)
         : _soma(std::make_shared<Soma>())
         , _cellProperties(std::make_shared<Property::CellLevel>())
-        , _handler(warning_handler ? warning_handler : morphio::getWarningHandler()) {}
+        , _handler(warning_handler ? warning_handler : morphio::getWarningHandler()) { }
 
     /**
        Build a mutable Morphology from an on-disk morphology

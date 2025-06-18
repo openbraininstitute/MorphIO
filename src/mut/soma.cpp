@@ -11,11 +11,11 @@
 namespace morphio {
 namespace mut {
 Soma::Soma(const Property::PointLevel& point_properties)
-    : point_properties_(point_properties) {}
+    : point_properties_(point_properties) { }
 
 Soma::Soma(const morphio::Soma& soma)
     : soma_type_(soma.type())
-    , point_properties_(soma.properties_->_somaLevel) {}
+    , point_properties_(soma.properties_->_somaLevel) { }
 
 Point Soma::center() const {
     return centerOfGravity(points());

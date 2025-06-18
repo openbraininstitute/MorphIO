@@ -120,8 +120,8 @@ class Mitochondria
     std::map<uint32_t, MitoSectionP> sections_;
 };
 
-inline const std::map<uint32_t, Mitochondria::MitoSectionP>& Mitochondria::sections() const
-    noexcept {
+inline const std::map<uint32_t, Mitochondria::MitoSectionP>& Mitochondria::sections()
+    const noexcept {
     return sections_;
 }
 

@@ -20,7 +20,7 @@ EndoplasmicReticulum::EndoplasmicReticulum(const std::vector<uint32_t>& section_
 
 EndoplasmicReticulum::EndoplasmicReticulum(
     const morphio::EndoplasmicReticulum& endoplasmic_reticulum)
-    : properties_(endoplasmic_reticulum.properties_->_endoplasmicReticulumLevel) {}
+    : properties_(endoplasmic_reticulum.properties_->_endoplasmicReticulumLevel) { }
 
 const std::vector<uint32_t>& EndoplasmicReticulum::sectionIndices() const noexcept {
     return properties_._sectionIndices;

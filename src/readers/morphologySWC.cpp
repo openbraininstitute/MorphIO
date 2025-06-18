@@ -11,7 +11,7 @@
 #include <string>         // std::string
 #include <unordered_map>  // std::unordered_map
 #include <utility>
-#include <vector>         // std::vector
+#include <vector>  // std::vector
 
 #include <morphio/mut/morphology.h>
 #include <morphio/mut/section.h>
@@ -37,108 +37,108 @@ const unsigned int SWC_ROOT = 0xFFFFFFFD;
  */
 class SWCTokenizer
 {
-public:
-  explicit SWCTokenizer(std::string contents, std::string path)
-      : contents_(std::move(contents))
-      , path_(std::move(path)) {
-      // ensure null termination
-      (void) contents_.c_str();
-  }
+  public:
+    explicit SWCTokenizer(std::string contents, std::string path)
+        : contents_(std::move(contents))
+        , path_(std::move(path)) {
+        // ensure null termination
+        (void) contents_.c_str();
+    }
 
-  bool done() const noexcept {
-      return pos_ >= contents_.size();
-  }
+    bool done() const noexcept {
+        return pos_ >= contents_.size();
+    }
 
-  size_t lineNumber() const noexcept {
-      return line_;
-  }
+    size_t lineNumber() const noexcept {
+        return line_;
+    }
 
-  void skip_to(char value) {
-      std::size_t pos = contents_.find_first_of(value, pos_);
-      if (pos == std::string::npos) {
-          pos_ = contents_.size();
-      }
-      pos_ = pos;
-  }
+    void skip_to(char value) {
+        std::size_t pos = contents_.find_first_of(value, pos_);
+        if (pos == std::string::npos) {
+            pos_ = contents_.size();
+        }
+        pos_ = pos;
+    }
 
-  void advance_to_non_whitespace() {
-      if (done()) {
-          return;
-      }
-      std::size_t pos = contents_.find_first_not_of(" \t\r", pos_);
-      if (pos == std::string::npos) {
-          pos_ = contents_.size();
-          return;
-      }
-      pos_ = pos;
-  }
+    void advance_to_non_whitespace() {
+        if (done()) {
+            return;
+        }
+        std::size_t pos = contents_.find_first_not_of(" \t\r", pos_);
+        if (pos == std::string::npos) {
+            pos_ = contents_.size();
+            return;
+        }
+        pos_ = pos;
+    }
 
-  void advance_to_number() {
-      advance_to_non_whitespace();
+    void advance_to_number() {
+        advance_to_non_whitespace();
 
-      if (done()) {
-          details::ErrorMessages err(path_);
-          throw RawDataError(err.EARLY_END_OF_FILE(line_));
-      }
+        if (done()) {
+            details::ErrorMessages err(path_);
+            throw RawDataError(err.EARLY_END_OF_FILE(line_));
+        }
 
-      auto c = contents_.at(pos_);
-      if (std::isdigit(c) != 0 || c == '-' || c == '+' || c == '.') {
-          return;
-      }
+        auto c = contents_.at(pos_);
+        if (std::isdigit(c) != 0 || c == '-' || c == '+' || c == '.') {
+            return;
+        }
 
-      details::ErrorMessages err(path_);
-      throw RawDataError(err.ERROR_LINE_NON_PARSABLE(line_));
-  }
+        details::ErrorMessages err(path_);
+        throw RawDataError(err.ERROR_LINE_NON_PARSABLE(line_));
+    }
 
-  int64_t read_int() {
-      advance_to_number();
-      try {
-          auto parsed = stn_.toInt(contents_, pos_);
-          pos_ = std::get<1>(parsed);
-          return std::get<0>(parsed);
-      } catch(std::invalid_argument&e) {
-          throw RawDataError(e.what());
-      }
-  }
+    int64_t read_int() {
+        advance_to_number();
+        try {
+            auto parsed = stn_.toInt(contents_, pos_);
+            pos_ = std::get<1>(parsed);
+            return std::get<0>(parsed);
+        } catch (std::invalid_argument& e) {
+            throw RawDataError(e.what());
+        }
+    }
 
-  floatType read_float() {
-      advance_to_number();
-      auto parsed = stn_.toFloat(contents_, pos_);
-      pos_ = std::get<1>(parsed);
-      return std::get<0>(parsed);
-  }
+    floatType read_float() {
+        advance_to_number();
+        auto parsed = stn_.toFloat(contents_, pos_);
+        pos_ = std::get<1>(parsed);
+        return std::get<0>(parsed);
+    }
 
-  void skip_blank_lines_and_comments() {
-      advance_to_non_whitespace();
+    void skip_blank_lines_and_comments() {
+        advance_to_non_whitespace();
 
-      while (!done() && (contents_.at(pos_) == '#' || contents_.at(pos_) == '\n')) {
-          if (contents_.at(pos_) == '#') {
-              skip_to('\n');
-          }
+        while (!done() && (contents_.at(pos_) == '#' || contents_.at(pos_) == '\n')) {
+            if (contents_.at(pos_) == '#') {
+                skip_to('\n');
+            }
 
-          if (!done() && contents_.at(pos_) == '\n') {
-              ++line_;
-              ++pos_;
-          }
-          advance_to_non_whitespace();
-      }
-  }
+            if (!done() && contents_.at(pos_) == '\n') {
+                ++line_;
+                ++pos_;
+            }
+            advance_to_non_whitespace();
+        }
+    }
 
-  void finish_line() {
-      skip_to('\n');
-      if (!done() && contents_.at(pos_) == '\n') {
-          ++line_;
-          ++pos_;
-      }
-  }
+    void finish_line() {
+        skip_to('\n');
+        if (!done() && contents_.at(pos_) == '\n') {
+            ++line_;
+            ++pos_;
+        }
+    }
 
 
-private:
-  size_t pos_ = 0;
-  size_t line_ = 1;
-  std::string contents_;
-  StringToNumber stn_;
-  std::string path_;
+  private:
+    size_t pos_ = 0;
+    size_t line_ = 1;
+    std::string contents_;
+    StringToNumber stn_;
+    std::string path_;
 };
 
 struct SWCSample {
@@ -175,8 +175,9 @@ static std::vector<SWCSample> readSamples(const std::string& contents, const std
         if (id < 0) {
             details::ErrorMessages err(path);
             throw RawDataError(err.ERROR_NEGATIVE_ID(sample.lineNumber));
-        }else if(id > std::numeric_limits<unsigned int>::max()){
-            throw RawDataError("SWC does not support ids larger than" + std::to_string(std::numeric_limits<unsigned int>::max()));
+        } else if (id > std::numeric_limits<unsigned int>::max()) {
+            throw RawDataError("SWC does not support ids larger than" +
+                               std::to_string(std::numeric_limits<unsigned int>::max()));
         }
 
         sample.id = static_cast<unsigned int>(id);
@@ -193,8 +194,9 @@ static std::vector<SWCSample> readSamples(const std::string& contents, const std
         if (parentId < -1) {
             details::ErrorMessages err(path);
             throw RawDataError(err.ERROR_NEGATIVE_ID(sample.lineNumber));
-        }else if(parentId > std::numeric_limits<unsigned int>::max()){
-            throw RawDataError("SWC does not support parent ids larger than" + std::to_string(std::numeric_limits<unsigned int>::max()));
+        } else if (parentId > std::numeric_limits<unsigned int>::max()) {
+            throw RawDataError("SWC does not support parent ids larger than" +
+                               std::to_string(std::numeric_limits<unsigned int>::max()));
         } else if (parentId == SWC_UNDEFINED_PARENT) {
             sample.parentId = SWC_ROOT;
         } else {
@@ -236,7 +238,7 @@ class SWCBuilder
     SWCBuilder(std::string path, WarningHandler* warning_handler, unsigned int options)
         : path_(std::move(path))
         , warning_handler_(warning_handler)
-        , options_(options) {}
+        , options_(options) { }
 
     Property::Properties buildProperties(const std::string& contents) {
         const Samples samples = readSamples(contents, path_);
@@ -338,7 +340,7 @@ class SWCBuilder
         Samples soma_samples;
         Samples root_samples;
 
-        for (const auto& sample: samples) {
+        for (const auto& sample : samples) {
             // { checks
             if (sample.diameter < morphio::epsilon) {
                 details::ErrorMessages err_(path_);
@@ -372,7 +374,8 @@ class SWCBuilder
             if (!samples_.insert({sample.id, sample}).second) {
                 const auto& original = samples_[sample.id];
                 details::ErrorMessages err_(path_);
-                throw RawDataError(err_.ERROR_REPEATED_ID(original.id, original.lineNumber, sample.id));
+                throw RawDataError(
+                    err_.ERROR_REPEATED_ID(original.id, original.lineNumber, sample.id));
             }
 
             children_[sample.parentId].push_back(sample.id);
@@ -380,8 +383,8 @@ class SWCBuilder
 
         // can only check for missing parents once all samples are loaded
         // since it's possible there may be forward references
-        for (const auto& sample: samples) {
-            if(sample.parentId != SWC_ROOT && samples_.count(sample.parentId) == 0){
+        for (const auto& sample : samples) {
+            if (sample.parentId != SWC_ROOT && samples_.count(sample.parentId) == 0) {
                 details::ErrorMessages err_(path_);
                 throw MissingParentError(err_.ERROR_MISSING_PARENT(
                     sample.id, static_cast<int>(sample.parentId), sample.lineNumber));
@@ -439,22 +442,22 @@ class SWCBuilder
         std::unordered_map<DeclaredID, std::shared_ptr<morphio::mut::Section>>& declared_to_swc,
         const Point& start_point,
         floatType start_diameter,
-        bool is_root)
-    {
+        bool is_root) {
         Property::PointLevel properties;
         auto& points = properties._points;
         auto& diameters = properties._diameters;
 
-        auto appendSection = [&](DeclaredID section_id_, DeclaredID parent_id_, SectionType starting_section_type) {
-            std::shared_ptr<morphio::mut::Section> new_section;
-            if (is_root) {
-                new_section = morph_.appendRootSection(properties, starting_section_type);
-            } else {
-                new_section = declared_to_swc.at(parent_id_)
-                                  ->appendSection(properties, starting_section_type);
-            }
-            declared_to_swc[section_id_] = new_section;
-        };
+        auto appendSection =
+            [&](DeclaredID section_id_, DeclaredID parent_id_, SectionType starting_section_type) {
+                std::shared_ptr<morphio::mut::Section> new_section;
+                if (is_root) {
+                    new_section = morph_.appendRootSection(properties, starting_section_type);
+                } else {
+                    new_section = declared_to_swc.at(parent_id_)
+                                      ->appendSection(properties, starting_section_type);
+                }
+                declared_to_swc[section_id_] = new_section;
+            };
 
         auto get_child_count = [&](unsigned int child_id) {
             return children_.count(child_id) == 0 ? 0 : children_.at(child_id).size();
@@ -472,7 +475,7 @@ class SWCBuilder
         size_t children_count = get_child_count(id);
         while (children_count == 1) {
             sample = &samples_.at(id);
-            if(sample->type != samples_.at(children_.at(id)[0]).type){
+            if (sample->type != samples_.at(children_.at(id)[0]).type) {
                 if (options_ & ALLOW_UNIFURCATED_SECTION_CHANGE) {
                     warning_handler_->emit(
                         std::make_unique<SectionTypeChanged>(path_, sample->lineNumber));
@@ -500,7 +503,12 @@ class SWCBuilder
             size_t offset = properties._points.size() - 1;
             const Point& new_start_point = properties._points[offset];
             floatType new_start_diameter = properties._diameters[offset];
-            assembleSections(children_.at(id)[0], DeclaredID(id), declared_to_swc, new_start_point, new_start_diameter, false);
+            assembleSections(children_.at(id)[0],
+                             DeclaredID(id),
+                             declared_to_swc,
+                             new_start_point,
+                             new_start_diameter,
+                             false);
         } else {
             size_t offset = properties._points.size() - 1;
             const Point& new_start_point = properties._points[offset];

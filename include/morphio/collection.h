@@ -21,13 +21,15 @@ class LoadUnordered;
  * Enable if `T` is a immutable morphology.
  */
 template <class T, class U = void>
-struct enable_if_immutable: public std::enable_if<std::is_same<T, Morphology>::value, U> {};
+struct enable_if_immutable: public std::enable_if<std::is_same<T, Morphology>::value, U> {
+};
 
 /**
  * Enable if `T` is a mutable morphology.
  */
 template <class T, class U = void>
-struct enable_if_mutable: public std::enable_if<std::is_same<T, mut::Morphology>::value, U> {};
+struct enable_if_mutable: public std::enable_if<std::is_same<T, mut::Morphology>::value, U> {
+};
 
 class Collection
 {
@@ -182,11 +184,11 @@ extern template class LoadUnordered<Morphology>::Iterator;
 extern template class LoadUnordered<mut::Morphology>::Iterator;
 
 extern template typename enable_if_immutable<Morphology, std::pair<size_t, Morphology>>::type
-    LoadUnordered<Morphology>::Iterator::operator*<Morphology>() const;
+    LoadUnordered<Morphology>::Iterator::operator* <Morphology>() const;
 
 extern template
     typename enable_if_mutable<mut::Morphology, std::pair<size_t, mut::Morphology>>::type
-        LoadUnordered<mut::Morphology>::Iterator::operator*<mut::Morphology>() const;
+        LoadUnordered<mut::Morphology>::Iterator::operator* <mut::Morphology>() const;
 
 extern template typename enable_if_mutable<mut::Morphology, mut::Morphology>::type
 Collection::load<mut::Morphology>(const std::string& morph_name,

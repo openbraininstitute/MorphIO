@@ -159,7 +159,7 @@ struct Annotation {
         , _sectionId(sectionId)
         , _points(std::move(points))
         , _details(std::move(details))
-        , _lineNumber(lineNumber) {}
+        , _lineNumber(lineNumber) { }
 
     AnnotationType _type;
     uint32_t _sectionId;
@@ -265,14 +265,14 @@ INSTANTIATE_TEMPLATE_GET(SectionType, _sectionLevel._sectionTypes)
 #undef INSTANTIATE_TEMPLATE_GET
 
 template <>
-inline const std::map<int32_t, std::vector<uint32_t>>& Properties::children<Section>() const
-    noexcept {
+inline const std::map<int32_t, std::vector<uint32_t>>& Properties::children<Section>()
+    const noexcept {
     return _sectionLevel._children;
 }
 
 template <>
-inline const std::map<int32_t, std::vector<uint32_t>>& Properties::children<MitoSection>() const
-    noexcept {
+inline const std::map<int32_t, std::vector<uint32_t>>& Properties::children<MitoSection>()
+    const noexcept {
     return _mitochondriaSectionLevel._children;
 }
 

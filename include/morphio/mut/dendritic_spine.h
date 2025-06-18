@@ -25,8 +25,8 @@ class DendriticSpine: public Morphology
     std::vector<Property::DendriticSpine::PostSynapticDensity>& postSynapticDensity() noexcept;
 
     /// Returns the post synaptic density values
-    const std::vector<Property::DendriticSpine::PostSynapticDensity>& postSynapticDensity() const
-        noexcept;
+    const std::vector<Property::DendriticSpine::PostSynapticDensity>& postSynapticDensity()
+        const noexcept;
 };
 
 }  // namespace mut

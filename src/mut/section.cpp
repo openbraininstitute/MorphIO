@@ -21,19 +21,19 @@ Section::Section(Morphology* morphology,
     : morphology_(morphology)
     , point_properties_(pointProperties)
     , id_(id)
-    , section_type_(type) {}
+    , section_type_(type) { }
 
 Section::Section(Morphology* morphology, unsigned int id, const morphio::Section& section)
     : Section(morphology,
               id,
               section.type(),
-              Property::PointLevel(section.properties_->_pointLevel, section.range_)) {}
+              Property::PointLevel(section.properties_->_pointLevel, section.range_)) { }
 
 Section::Section(Morphology* morphology, unsigned int id, const Section& section)
     : morphology_(morphology)
     , point_properties_(section.point_properties_)
     , id_(id)
-    , section_type_(section.section_type_) {}
+    , section_type_(section.section_type_) { }
 
 void Section::throwIfNoOwningMorphology() const {
     if (morphology_ == nullptr) {

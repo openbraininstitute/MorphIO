@@ -67,7 +67,7 @@ namespace h5 {
 
 MorphologyHDF5::MorphologyHDF5(const HighFive::Group& group, const std::string& uri)
     : _group(group)
-    , _uri(uri) {}
+    , _uri(uri) { }
 
 Property::Properties load(const std::string& uri, WarningHandler* warning_handler) {
     try {
@@ -386,10 +386,7 @@ void MorphologyHDF5::_readEndoplasmicReticulum() {
           _d_section_index,
           1,
           _properties._endoplasmicReticulumLevel._sectionIndices);
-    _read(_g_endoplasmic_reticulum,
-          _d_volume,
-          1,
-          _properties._endoplasmicReticulumLevel._volumes);
+    _read(_g_endoplasmic_reticulum, _d_volume, 1, _properties._endoplasmicReticulumLevel._volumes);
     _read(_g_endoplasmic_reticulum,
           _d_surface_area,
           1,

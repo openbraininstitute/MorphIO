@@ -26,7 +26,7 @@ std::string errorLink(const std::string& uri,
 
 struct WarningMessage {
     explicit WarningMessage(std::string uri_)
-        : uri(std::move(uri_)) {}
+        : uri(std::move(uri_)) { }
     WarningMessage(const WarningMessage&) = default;
     WarningMessage(WarningMessage&&) = delete;
     WarningMessage& operator=(const WarningMessage&) = default;
@@ -41,7 +41,7 @@ struct WarningMessage {
 struct ZeroDiameter: public WarningMessage {
     ZeroDiameter(std::string uri_, uint64_t lineNumber_)
         : WarningMessage(std::move(uri_))
-        , lineNumber(lineNumber_) {}
+        , lineNumber(lineNumber_) { }
     morphio::enums::Warning warning() const final {
         return Warning::ZERO_DIAMETER;
     }
@@ -57,7 +57,7 @@ struct ZeroDiameter: public WarningMessage {
 struct SectionTypeChanged: public WarningMessage {
     SectionTypeChanged(std::string uri_, uint64_t lineNumber_)
         : WarningMessage(std::move(uri_))
-        , lineNumber(lineNumber_) {}
+        , lineNumber(lineNumber_) { }
     morphio::enums::Warning warning() const final {
         return Warning::SECTION_TYPE_CHANGED;
     }
@@ -74,7 +74,7 @@ struct SectionTypeChanged: public WarningMessage {
 struct DisconnectedNeurite: public WarningMessage {
     DisconnectedNeurite(std::string uri_, uint64_t lineNumber_)
         : WarningMessage(std::move(uri_))
-        , lineNumber(lineNumber_) {}
+        , lineNumber(lineNumber_) { }
     Warning warning() const final {
         return Warning::DISCONNECTED_NEURITE;
     }
@@ -92,7 +92,7 @@ struct DisconnectedNeurite: public WarningMessage {
 
 struct NoSomaFound: public WarningMessage {
     explicit NoSomaFound(std::string uri_)
-        : WarningMessage(std::move(uri_)) {}
+        : WarningMessage(std::move(uri_)) { }
     Warning warning() const final {
         return Warning::NO_SOMA_FOUND;
     }
@@ -106,7 +106,7 @@ struct NoSomaFound: public WarningMessage {
 struct SomaNonConform: public WarningMessage {
     explicit SomaNonConform(std::string uri_, std::string description_)
         : WarningMessage(std::move(uri_))
-        , description(std::move(description_)) {}
+        , description(std::move(description_)) { }
     Warning warning() const final {
         return Warning::SOMA_NON_CONFORM;
     }
@@ -120,7 +120,7 @@ struct SomaNonConform: public WarningMessage {
 struct WrongRootPoint: public WarningMessage {
     explicit WrongRootPoint(std::string uri_, std::vector<unsigned int> lineNumbers_)
         : WarningMessage(std::move(uri_))
-        , lineNumbers(std::move(lineNumbers_)) {}
+        , lineNumbers(std::move(lineNumbers_)) { }
     Warning warning() const final {
         return Warning::WRONG_ROOT_POINT;
     }
@@ -139,7 +139,7 @@ struct WrongRootPoint: public WarningMessage {
 struct AppendingEmptySection: public WarningMessage {
     explicit AppendingEmptySection(std::string uri_, uint32_t sectionId_)
         : WarningMessage(std::move(uri_))
-        , sectionId(sectionId_) {}
+        , sectionId(sectionId_) { }
     Warning warning() const final {
         return Warning::APPENDING_EMPTY_SECTION;
     }
@@ -158,7 +158,7 @@ struct WrongDuplicate: public WarningMessage {
                             std::shared_ptr<morphio::mut::Section> parent_)
         : WarningMessage(std::move(uri_))
         , current(std::move(current_))
-        , parent(std::move(parent_)) {}
+        , parent(std::move(parent_)) { }
     std::string msg() const final;
 
     Warning warning() const final {
@@ -173,7 +173,7 @@ struct OnlyChild: public WarningMessage {
     explicit OnlyChild(std::string uri_, unsigned int parentId_, unsigned int childId_)
         : WarningMessage(std::move(uri_))
         , parentId(parentId_)
-        , childId(childId_) {}
+        , childId(childId_) { }
     Warning warning() const final {
         return Warning::ONLY_CHILD;
     }
@@ -192,7 +192,7 @@ struct OnlyChild: public WarningMessage {
 
 struct WriteNoSoma: public WarningMessage {
     WriteNoSoma()
-        : WarningMessage(std::string()) {}
+        : WarningMessage(std::string()) { }
     Warning warning() const final {
         return Warning::WRITE_NO_SOMA;
     }
@@ -205,7 +205,7 @@ struct WriteNoSoma: public WarningMessage {
 
 struct WriteEmptyMorphology: public WarningMessage {
     WriteEmptyMorphology()
-        : WarningMessage(std::string()) {}
+        : WarningMessage(std::string()) { }
     Warning warning() const final {
         return Warning::WRITE_EMPTY_MORPHOLOGY;
     }
@@ -219,7 +219,7 @@ struct WriteEmptyMorphology: public WarningMessage {
 
 struct WriteUndefinedSoma: public WarningMessage {
     WriteUndefinedSoma()
-        : WarningMessage(std::string()) {}
+        : WarningMessage(std::string()) { }
     Warning warning() const final {
         return Warning::WRITE_UNDEFINED_SOMA;
     }
@@ -232,7 +232,7 @@ struct WriteUndefinedSoma: public WarningMessage {
 
 struct MitochondriaWriteNotSupported: public WarningMessage {
     MitochondriaWriteNotSupported()
-        : WarningMessage(std::string()) {}
+        : WarningMessage(std::string()) { }
     Warning warning() const final {
         return Warning::MITOCHONDRIA_WRITE_NOT_SUPPORTED;
     }
@@ -247,7 +247,7 @@ struct MitochondriaWriteNotSupported: public WarningMessage {
 
 struct SomaNonContour: public WarningMessage {
     SomaNonContour()
-        : WarningMessage(std::string()) {}
+        : WarningMessage(std::string()) { }
     Warning warning() const final {
         return Warning::SOMA_NON_CONTOUR;
     }
@@ -262,7 +262,7 @@ struct SomaNonContour: public WarningMessage {
 
 struct SomaNonCylinderOrPoint: public WarningMessage {
     SomaNonCylinderOrPoint()
-        : WarningMessage(std::string()) {}
+        : WarningMessage(std::string()) { }
     Warning warning() const final {
         return Warning::SOMA_NON_CYLINDER_OR_POINT;
     }
@@ -324,7 +324,7 @@ class WarningHandlerCollector: public WarningHandler
     struct Emission {
         Emission(bool wasMarkedIgnore_, std::shared_ptr<WarningMessage> warning_)
             : wasMarkedIgnore(wasMarkedIgnore_)
-            , warning(std::move(warning_)) {}
+            , warning(std::move(warning_)) { }
         bool wasMarkedIgnore = false;
         std::shared_ptr<WarningMessage> warning;
     };

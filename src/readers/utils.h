@@ -1,7 +1,7 @@
 #pragma once
 #include <clocale>  // locale_t
 #include <string>
-#include <utility> // std::tuple
+#include <utility>  // std::tuple
 
 #include <morphio/vector_types.h>  // floatType
 
@@ -17,8 +17,8 @@ struct StringToNumber {
     StringToNumber();
     ~StringToNumber();
 
-    std::tuple<int64_t, size_t> toInt(const std::string&s, size_t offset) const;
-    std::tuple<floatType, size_t> toFloat(const std::string&s, size_t offset) const;
+    std::tuple<int64_t, size_t> toInt(const std::string& s, size_t offset) const;
+    std::tuple<floatType, size_t> toFloat(const std::string& s, size_t offset) const;
 };
 
 StringToNumber& getStringToNumber();

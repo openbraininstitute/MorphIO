@@ -110,7 +110,7 @@ class Section: public SectionBase<Section>
 
   protected:
     Section(uint32_t id, const std::shared_ptr<Property::Properties>& properties)
-        : SectionBase(id, properties) {}
+        : SectionBase(id, properties) { }
 };
 
 }  // namespace morphio

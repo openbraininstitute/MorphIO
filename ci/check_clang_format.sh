@@ -6,12 +6,12 @@
 set -euo pipefail
 
 VENV=venv-clang-format
-CLANG_FORMAT_VERSION=9.0.0
+CLANG_FORMAT_VERSION='clang-format>=18,<19'
 
 if [[ ! -d $VENV ]]; then
     python3 -mvenv "$VENV"
     "$VENV/bin/pip" install --upgrade pip
-    "$VENV/bin/pip" install clang-format=="$CLANG_FORMAT_VERSION"
+    "$VENV/bin/pip" install "$CLANG_FORMAT_VERSION"
 fi
 
 set +u  # ignore errors in virtualenv's activate

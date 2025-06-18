@@ -46,7 +46,9 @@ class SectionBase
     std::vector<T> children() const;
 
     /** Return the ID of this section. */
-    uint32_t id() const noexcept { return id_; }
+    uint32_t id() const noexcept {
+        return id_;
+    }
 
   protected:
     SectionBase(uint32_t id, const std::shared_ptr<Property::Properties>& properties);

@@ -12,7 +12,7 @@
 
 namespace morphio {
 Soma::Soma(const std::shared_ptr<Property::Properties>& properties)
-    : properties_(properties) {}
+    : properties_(properties) { }
 
 Point Soma::center() const {
     return centerOfGravity(properties_->_somaLevel._points);

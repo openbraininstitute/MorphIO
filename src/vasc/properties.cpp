@@ -47,7 +47,7 @@ VascPointLevel::VascPointLevel(const std::vector<Point::Type>& points,
 }
 
 VascPointLevel::VascPointLevel(const VascPointLevel& data)
-    : VascPointLevel(data._points, data._diameters) {}
+    : VascPointLevel(data._points, data._diameters) { }
 
 VascPointLevel::VascPointLevel(const VascPointLevel& data, SectionRange range) {
     _points = copySpan<property::Point>(data._points, range);
