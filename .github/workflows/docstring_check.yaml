@@ -20,8 +20,8 @@ jobs:
       - name: Install packages
         run: |
           sudo apt-get ${{env.apt_options}} update -y
-          sudo apt-get ${{env.apt_options}} install -y build-essential libhdf5-dev python3-venv libclang1-12
+          sudo apt-get ${{env.apt_options}} install -y build-essential libhdf5-dev python3-venv libclang1-18
       - name: Check docstrings
         run: |
-          export LIBCLANG_PATH=/usr/lib/x86_64-linux-gnu/libclang-12.so
+          export LIBCLANG_PATH=/usr/lib/x86_64-linux-gnu/libclang-18.so
           ci/check_generated_docstrings.sh || true
