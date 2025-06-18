@@ -161,7 +161,7 @@ inline breadth_iterator_t<SectionT, MorphologyT>::breadth_iterator_t(
 template <typename SectionT, typename MorphologyT>
 inline breadth_iterator_t<SectionT, MorphologyT>::breadth_iterator_t(
     const breadth_iterator_t& other)
-    : deque_(other.deque_) {}
+    : deque_(other.deque_) { }
 
 template <typename SectionT, typename MorphologyT>
 inline SectionT breadth_iterator_t<SectionT, MorphologyT>::operator*() const {
@@ -222,7 +222,7 @@ inline depth_iterator_t<SectionT, MorphologyT>::depth_iterator_t(const Morpholog
 
 template <typename SectionT, typename MorphologyT>
 inline depth_iterator_t<SectionT, MorphologyT>::depth_iterator_t(const depth_iterator_t& other)
-    : deque_(other.deque_) {}
+    : deque_(other.deque_) { }
 
 template <typename SectionT, typename MorphologyT>
 inline SectionT depth_iterator_t<SectionT, MorphologyT>::operator*() const {
@@ -273,11 +273,11 @@ inline bool depth_iterator_t<SectionT, MorphologyT>::operator!=(
 template <typename SectionT>
 inline upstream_iterator_t<SectionT>::upstream_iterator_t()
     : unused(0)
-    , end(true) {}
+    , end(true) { }
 
 template <typename SectionT>
 inline upstream_iterator_t<SectionT>::upstream_iterator_t(const SectionT& section)
-    : current(section) {}
+    : current(section) { }
 
 template <typename SectionT>
 inline upstream_iterator_t<SectionT>::upstream_iterator_t(const upstream_iterator_t& other) {

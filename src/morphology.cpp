@@ -135,12 +135,12 @@ Morphology::Morphology(const Property::Properties& properties, unsigned int opti
 Morphology::Morphology(const std::string& path,
                        unsigned int options,
                        std::shared_ptr<WarningHandler> warning_handler)
-    : Morphology(loadFile(path, warning_handler, options), options) {}
+    : Morphology(loadFile(path, warning_handler, options), options) { }
 
 Morphology::Morphology(const HighFive::Group& group,
                        unsigned int options,
                        std::shared_ptr<WarningHandler> warning_handler)
-    : Morphology(readers::h5::load(group, warning_handler.get()), options) {}
+    : Morphology(readers::h5::load(group, warning_handler.get()), options) { }
 
 Morphology::Morphology(const mut::Morphology& morphology) {
     properties_ = std::make_shared<Property::Properties>(morphology.buildReadOnly());
@@ -151,7 +151,7 @@ Morphology::Morphology(const std::string& contents,
                        const std::string& extension,
                        unsigned int options,
                        std::shared_ptr<WarningHandler> warning_handler)
-    : Morphology(loadString(contents, extension, options, warning_handler), options) {}
+    : Morphology(loadString(contents, extension, options, warning_handler), options) { }
 
 Soma Morphology::soma() const {
     return Soma(properties_);

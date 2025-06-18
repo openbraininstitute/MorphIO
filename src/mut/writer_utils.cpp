@@ -77,7 +77,6 @@ void validateRootPointsHaveTwoOrMorePoints(const morphio::mut::Morphology& morph
             throw morphio::RawDataError("Root sections must have at least 2 points");
         }
     }
-
 }
 
 }  // namespace details

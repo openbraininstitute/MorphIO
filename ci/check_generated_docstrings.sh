@@ -30,7 +30,7 @@ VENV=build/venv-docstrings
 if [[ ! -d $VENV ]]; then
     python3 -mvenv "$VENV"
     $VENV/bin/pip install -U pip setuptools wheel
-    $VENV/bin/pip install 'clang==12.0.1'  # keep in sync w/ .github/workflows/docstring_check.yaml
+    $VENV/bin/pip install 'clang>=18,<19'  # keep in sync w/ .github/workflows/docstring_check.yaml
     $VENV/bin/python -m pip install $PACKAGE
 fi
 

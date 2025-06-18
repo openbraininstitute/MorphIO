@@ -28,7 +28,7 @@ class ErrorMessages
        \param uri path to a morphology file.
      */
     explicit ErrorMessages(std::string uri)
-        : _uri(std::move(uri)) {}
+        : _uri(std::move(uri)) { }
 
     /** Is the output of the warning ignored */
     static bool isIgnored(const enums::Warning& warning);

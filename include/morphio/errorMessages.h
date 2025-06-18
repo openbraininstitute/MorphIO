@@ -4,8 +4,8 @@
  */
 #pragma once
 
-#include <memory>     // std::shared_ptr
-#include <vector>     // std::vector
+#include <memory>  // std::shared_ptr
+#include <vector>  // std::vector
 
 #include <morphio/enums.h>             // Warning
 #include <morphio/warning_handling.h>  // ErrorAndWarningHandler

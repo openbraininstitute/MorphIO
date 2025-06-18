@@ -24,7 +24,7 @@ class VasculatureHDF5
 {
   public:
     explicit VasculatureHDF5(const std::string& uri)
-        : _uri(uri) {}
+        : _uri(uri) { }
 
     virtual ~VasculatureHDF5() = default;
 

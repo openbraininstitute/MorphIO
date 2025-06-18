@@ -82,7 +82,8 @@ std::string ErrorMessages::ERROR_REPEATED_ID(const unsigned int originalId,
                     newLineNumber,
                     ErrorLevel::WARNING,
                     "Repeated ID: " + std::to_string(originalId)) +
-           "\nID already appears here: \n" + errorLink(_uri, originalLineNumber, ErrorLevel::WARNING);
+           "\nID already appears here: \n" +
+           errorLink(_uri, originalLineNumber, ErrorLevel::WARNING);
 }
 
 std::string ErrorMessages::EARLY_END_OF_FILE(long unsigned int lineNumber) const {

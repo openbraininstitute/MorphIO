@@ -12,7 +12,7 @@ MitoSection::MitoSection(Mitochondria* mitochondria,
                          const Property::MitochondriaPointLevel& pointProperties)
     : id_(section_id)
     , mitochondria_(mitochondria)
-    , _mitoPoints(pointProperties) {}
+    , _mitoPoints(pointProperties) { }
 
 MitoSection::MitoSection(Mitochondria* mitochondria,
                          unsigned int section_id,
@@ -20,14 +20,14 @@ MitoSection::MitoSection(Mitochondria* mitochondria,
     : MitoSection(mitochondria,
                   section_id,
                   Property::MitochondriaPointLevel(section.properties_->_mitochondriaPointLevel,
-                                                   section.range_)) {}
+                                                   section.range_)) { }
 
 MitoSection::MitoSection(Mitochondria* mitochondria,
                          unsigned int section_id,
                          const MitoSection& section)
     : id_(section_id)
     , mitochondria_(mitochondria)
-    , _mitoPoints(section._mitoPoints) {}
+    , _mitoPoints(section._mitoPoints) { }
 
 std::shared_ptr<MitoSection> MitoSection::appendSection(
     const Property::MitochondriaPointLevel& points) {

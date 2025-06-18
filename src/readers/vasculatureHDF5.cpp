@@ -6,7 +6,7 @@
 #include "vasculatureHDF5.h"
 
 #include <highfive/H5DataType.hpp>  // for HighFive::SilenceHDF5
-#include <highfive/H5Utility.hpp>  // for HighFive::SilenceHDF5
+#include <highfive/H5Utility.hpp>   // for HighFive::SilenceHDF5
 
 #include "../error_message_generation.h"
 

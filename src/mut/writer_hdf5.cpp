@@ -30,7 +30,8 @@ struct base_type {
 };
 
 template <typename T>
-struct base_type<std::vector<T>>: base_type<T> {};
+struct base_type<std::vector<T>>: base_type<T> {
+};
 
 template <typename T>
 HighFive::Attribute write_attribute(HighFive::File& file,

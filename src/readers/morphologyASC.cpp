@@ -67,7 +67,7 @@ class NeurolucidaParser
     explicit NeurolucidaParser(const std::string& uri)
         : uri_(uri)
         , lex_(uri, false)
-        , err_(uri) {}
+        , err_(uri) { }
 
     NeurolucidaParser(NeurolucidaParser const&) = delete;
     NeurolucidaParser& operator=(NeurolucidaParser const&) = delete;

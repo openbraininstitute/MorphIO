@@ -53,7 +53,7 @@ PointLevel::PointLevel(std::vector<Point::Type> points,
 }
 
 PointLevel::PointLevel(const PointLevel& data)
-    : PointLevel(data._points, data._diameters, data._perimeters) {}
+    : PointLevel(data._points, data._diameters, data._perimeters) { }
 
 PointLevel::PointLevel(const PointLevel& data, SectionRange range) {
     _points = copySpan<Property::Point>(data._points, range);

@@ -25,22 +25,21 @@ namespace morphio {
 StringToNumber::StringToNumber()
 #if defined(_WIN32) || defined(__WIN32__) || defined(WIN32)
     // On windows, use their locale handling for their runtime
-    : locale(_create_locale(LC_ALL, "C")) {
-}
+    : locale(_create_locale(LC_ALL, "C")){}
 #else
     // On other platforms, use the POSIX version
     : locale(newlocale(LC_NUMERIC_MASK, "POSIX", nullptr)) {
 }
 #endif
 
-StringToNumber::~StringToNumber() {
+    StringToNumber::~StringToNumber() {
     freelocale(locale);
 }
 
 std::tuple<int64_t, size_t> StringToNumber::toInt(const std::string& s, size_t offset) const {
     const size_t base = 10;
-    const char *pos = &s[offset];
-    const char *endpos = &s[s.size()];
+    const char* pos = &s[offset];
+    const char* endpos = &s[s.size()];
     int64_t ret = strtol_l(pos, const_cast<char**>(&endpos), base, locale);
 
     auto new_offset = static_cast<size_t>(endpos - s.data());
@@ -53,8 +52,8 @@ std::tuple<int64_t, size_t> StringToNumber::toInt(const std::string& s, size_t o
 }
 
 std::tuple<floatType, size_t> StringToNumber::toFloat(const std::string& s, size_t offset) const {
-    const char *pos = &s[offset];
-    const char *endpos = &s[s.size()];
+    const char* pos = &s[offset];
+    const char* endpos = &s[s.size()];
     floatType ret = strto_float(pos, const_cast<char**>(&endpos), locale);
 
     auto new_offset = static_cast<size_t>(endpos - s.data());

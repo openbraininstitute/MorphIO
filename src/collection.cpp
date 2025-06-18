@@ -45,7 +45,7 @@ class LoadUnorderedFromLoopIndices: public LoadUnorderedImpl
         , _loop_indices(std::move(loop_indices))
         , _morphology_names(std::move(morphology_names))
         , _options(options)
-        , _warning_handler(std::move(warning_handler)) {}
+        , _warning_handler(std::move(warning_handler)) { }
 
     size_t size() const override {
         return _morphology_names.size();
@@ -141,7 +141,7 @@ class DirectoryCollection: public morphio::detail::CollectionImpl<DirectoryColle
   public:
     DirectoryCollection(std::string collection_path, std::vector<std::string> extensions)
         : _dirname(std::move(collection_path))
-        , _extensions(std::move(extensions)) {}
+        , _extensions(std::move(extensions)) { }
 
   protected:
     friend morphio::detail::CollectionImpl<DirectoryCollection>;
@@ -189,13 +189,13 @@ class HDF5ContainerCollection: public morphio::detail::CollectionImpl<HDF5Contai
      * to open the container.
      */
     HDF5ContainerCollection(HighFive::File file)
-        : _file(std::move(file)) {}
+        : _file(std::move(file)) { }
 
     /**
      * Create the collection from a path.
      */
     HDF5ContainerCollection(const std::string& collection_path)
-        : HDF5ContainerCollection(default_open_file(collection_path)) {}
+        : HDF5ContainerCollection(default_open_file(collection_path)) { }
 
     HDF5ContainerCollection(HDF5ContainerCollection&&) = delete;
     HDF5ContainerCollection(const HDF5ContainerCollection&) = delete;
@@ -277,7 +277,7 @@ Collection::Collection(std::shared_ptr<CollectionImpl> collection)
 }
 
 Collection::Collection(std::string collection_path, std::vector<std::string> extensions)
-    : Collection(detail::open_collection(std::move(collection_path), std::move(extensions))) {}
+    : Collection(detail::open_collection(std::move(collection_path), std::move(extensions))) { }
 
 
 template <class M>
@@ -359,13 +359,13 @@ typename LoadUnordered<M>::Iterator LoadUnordered<M>::end() const {
 
 template <class M>
 LoadUnordered<M>::LoadUnordered(std::shared_ptr<LoadUnorderedImpl> load_unordered_impl)
-    : _load_unordered_impl(load_unordered_impl) {}
+    : _load_unordered_impl(load_unordered_impl) { }
 
 template <class M>
 LoadUnordered<M>::Iterator::Iterator(std::shared_ptr<LoadUnorderedImpl> load_unordered_impl,
                                      size_t k)
     : _k(k)
-    , _load_unordered_impl(std::move(load_unordered_impl)) {}
+    , _load_unordered_impl(std::move(load_unordered_impl)) { }
 
 template <class M>
 bool LoadUnordered<M>::Iterator::operator==(const LoadUnordered::Iterator& other) const {
@@ -453,10 +453,10 @@ template typename LoadUnordered<mut::Morphology>::Iterator
 LoadUnordered<mut::Morphology>::Iterator::operator++(int);
 
 template typename enable_if_mutable<mut::Morphology, std::pair<size_t, mut::Morphology>>::type
-    LoadUnordered<mut::Morphology>::Iterator::operator*<mut::Morphology>() const;
+    LoadUnordered<mut::Morphology>::Iterator::operator* <mut::Morphology>() const;
 
 template typename enable_if_immutable<Morphology, std::pair<size_t, Morphology>>::type
-    LoadUnordered<Morphology>::Iterator::operator*<Morphology>() const;
+    LoadUnordered<Morphology>::Iterator::operator* <Morphology>() const;
 
 
 }  // namespace morphio

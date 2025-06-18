@@ -37,7 +37,7 @@ class Mitochondria
 
   private:
     explicit Mitochondria(const std::shared_ptr<Property::Properties>& properties)
-        : properties_(properties) {}
+        : properties_(properties) { }
     std::shared_ptr<Property::Properties> properties_;
 
     friend class Morphology;

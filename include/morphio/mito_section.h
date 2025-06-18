@@ -63,13 +63,14 @@ class MitoSection: public SectionBase<MitoSection>
     range<const floatType> relativePathLengths() const;
 
     /**
-     * Return true if the both sections have the same neuriteSectionIds, diameters and relativePathLengths
+     * Return true if the both sections have the same neuriteSectionIds, diameters and
+     * relativePathLengths
      */
     bool hasSameShape(const MitoSection& other) const noexcept;
 
   protected:
     MitoSection(uint32_t id, const std::shared_ptr<Property::Properties>& morphology)
-        : SectionBase(id, morphology) {}
+        : SectionBase(id, morphology) { }
     friend MitoSection Mitochondria::section(uint32_t) const;
     friend class SectionBase<MitoSection>;
     friend class mut::MitoSection;
