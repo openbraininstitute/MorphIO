@@ -64,7 +64,7 @@ jobs:
           export STATIC_HDF5=True
 
           if [[ "$(uname -m)" == "aarch64" ]]; then
-            export CMAKE_PREFIX_PATH=/opt/hdf5-static/install-aarch64/
+            export CMAKE_PREFIX_PATH=/opt/hdf5-static/install-aarch64/install/
             CIBW_MANYLINUX_AARCH64_IMAGE=manylinux2014 python -m cibuildwheel --output-dir dist
           else
             export CMAKE_PREFIX_PATH=/opt/hdf5-static/install-x86_64/install/
