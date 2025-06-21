@@ -5,7 +5,7 @@ env:
   apt_options: -o Acquire::Retries=3
 
   CIBW_BUILD_VERBOSITY: 1
-  CIBW_BUILD: 'cp*'
+  CIBW_BUILD: '*musllinux*'
   CIBW_SKIP: 'cp35-* cp36-* cp37-* cp38-* *-manylinux_i686 *-win32'
   CIBW_BEFORE_TEST: pip install -r {project}/tests/requirement_tests.txt
   CIBW_TEST_COMMAND: pytest -s -v {project}/tests
@@ -61,7 +61,9 @@ jobs:
           CIBW_BEFORE_TEST: |
             # there are no h5py wheels for musllinux
             # h5py needs hdf5-dev to compile from source
+            apk update || true
             apk add --no-cache hdf5-dev 2>/dev/null || true
+            apk add --no-cache gcompat || true
             pip install -r {project}/tests/requirement_tests.txt
         run: |
           # used by setup.py to decide if to set `FindHDF5` to use static hdf5 libraries
