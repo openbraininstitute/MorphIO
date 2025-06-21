@@ -85,18 +85,30 @@ else()
 endif()
 
 if (LINUX)
-  # Let preprocessor know if there is locale support
-  # For linux distros that use alternatives to libc (e.g. musl) that do no support locales yet
+  # Let preprocessor know if there is support for GNU locale extensions (e.g. strtol_l)
+  # For linux distros that use alternatives to libc (e.g. musl) that do not support them
   include(CheckCXXSourceCompiles)
   check_cxx_source_compiles(
       "#include <locale.h>
-       int main() { locale_t x; return 0; }"
-      HAS_LOCALE_T
+       #include <stdlib.h>
+       int main() { 
+           locale_t loc = newlocale(LC_NUMERIC_MASK, \"C\", nullptr);
+           if (loc) {
+               strtol_l(\"123\", nullptr, 10, loc);
+               freelocale(loc);
+           }
+           return 0; 
+       }"
+      HAS_LOCALE_EXTENSIONS
   )
-  if(HAS_LOCALE_T)
-      set(FLAGS "${FLAGS} -DHAS_LOCALE_T")
+  if(HAS_LOCALE_EXTENSIONS)
+      set(FLAGS "${FLAGS} -DHAS_LOCALE_EXTENSIONS")
+      message("Locale support: Available (Linux)")
+  else()
+      message("Locale support: Not available (Linux)")
   endif()
 else()
     # most windows and apple versions we target support locales
-    set(FLAGS "${FLAGS} -DHAS_LOCALE_T")
+    set(FLAGS "${FLAGS} -DHAS_LOCALE_EXTENSIONS")
+    message("Locale support: Available (${CMAKE_SYSTEM_NAME})")
 endif()

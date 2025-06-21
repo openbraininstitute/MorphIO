@@ -2,7 +2,7 @@
 
 namespace morphio {
 
-#ifdef HAS_LOCALE_T
+#ifdef HAS_LOCALE_EXTENSIONS
 
 #if defined(_WIN32) || defined(__WIN32__) || defined(WIN32)
 #define freelocale _free_locale
@@ -25,7 +25,7 @@ namespace morphio {
 
 #endif
 
-#else // not HAS_LOCALE_T
+#else // not HAS_LOCALE_EXTENSIONS
 
 #if defined(_WIN32) || defined(__WIN32__) || defined(WIN32)
 #define str_to_long _strtol
@@ -47,11 +47,11 @@ namespace morphio {
 
 #endif
 
-#endif  // HAS_LOCALE_T
+#endif  // HAS_LOCALE_EXTENSIONS
 
 // Only create the `locale` to facilitate number handling once
 StringToNumber::StringToNumber()
-#ifdef HAS_LOCALE_T
+#ifdef HAS_LOCALE_EXTENSIONS
 #if defined(_WIN32) || defined(__WIN32__) || defined(WIN32)
     // On windows, use their locale handling for their runtime
     : locale(_create_locale(LC_ALL, "C")){}
@@ -60,10 +60,12 @@ StringToNumber::StringToNumber()
     : locale(newlocale(LC_NUMERIC_MASK, "POSIX", nullptr)) {
 }
 #endif
+#else
+    {}
 #endif
 
     StringToNumber::~StringToNumber() {
-#ifdef HAS_LOCALE_T
+#ifdef HAS_LOCALE_EXTENSIONS
     freelocale(locale);
 #endif
 }
@@ -73,7 +75,7 @@ std::tuple<int64_t, size_t> StringToNumber::toInt(const std::string& s, size_t o
     const char* pos = &s[offset];
     const char* endpos = &s[s.size()];
 
-#ifdef HAS_LOCALE_T
+#ifdef HAS_LOCALE_EXTENSIONS
     int64_t ret = str_to_long(pos, const_cast<char**>(&endpos), base, locale);
 #else
     int64_t ret = str_to_long(pos, const_cast<char**>(&endpos), base);
@@ -92,7 +94,7 @@ std::tuple<floatType, size_t> StringToNumber::toFloat(const std::string& s, size
     const char* pos = &s[offset];
     const char* endpos = &s[s.size()];
 
-#ifdef HAS_LOCALE_T
+#ifdef HAS_LOCALE_EXTENSIONS
     floatType ret = str_to_float(pos, const_cast<char**>(&endpos), locale);
 #else
     floatType ret = str_to_float(pos, const_cast<char**>(&endpos));
@@ -112,7 +114,7 @@ StringToNumber& getStringToNumber() {
     return stn;
 }
 
-#ifdef HAS_LOCALE_T
+#ifdef HAS_LOCALE_EXTENSIONS
 #if defined(_WIN32) || defined(__WIN32__) || defined(WIN32)
 #undef freelocale
 #endif
