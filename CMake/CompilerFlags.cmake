@@ -93,10 +93,8 @@ if (LINUX)
        #include <stdlib.h>
        int main() { 
            locale_t loc = newlocale(LC_NUMERIC_MASK, \"C\", nullptr);
-           if (loc) {
-               strtol_l(\"123\", nullptr, 10, loc);
-               freelocale(loc);
-           }
+           strtol_l(\"123\", nullptr, 10, loc);
+           freelocale(loc);
            return 0; 
        }"
       HAS_LOCALE_EXTENSIONS
