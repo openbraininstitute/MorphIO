@@ -83,3 +83,20 @@ elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "Intel")
 else()
   message(WARNING "Unexpected compiler type ${CMAKE_CXX_COMPILER_ID}")
 endif()
+
+if (LINUX)
+  # Let preprocessor know if there is locale support
+  # For linux distros that use alternatives to libc (e.g. musl) that do no support locales yet
+  include(CheckCXXSourceCompiles)
+  check_cxx_source_compiles(
+      "#include <locale.h>
+       int main() { locale_t x; return 0; }"
+      HAS_LOCALE_T
+  )
+  if(HAS_LOCALE_T)
+      set(FLAGS "${FLAGS} -DHAS_LOCALE_T")
+  endif()
+else()
+    # most windows and apple versions we target support locales
+    set(FLAGS "${FLAGS} -DHAS_LOCALE_T")
+endif()

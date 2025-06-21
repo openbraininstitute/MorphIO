@@ -8,10 +8,12 @@
 namespace morphio {
 
 struct StringToNumber {
+#ifdef HAS_LOCALE_T
 #if defined(_WIN32) || defined(__WIN32__) || defined(WIN32)
     _locale_t locale;
 #else
     locale_t locale;
+#endif
 #endif
 
     StringToNumber();
