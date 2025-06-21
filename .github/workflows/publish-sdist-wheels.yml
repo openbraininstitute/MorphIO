@@ -58,7 +58,11 @@ jobs:
             mkdir -p /host/home/runner/work/src-cache
             ln -s /host/home/runner/work/src-cache /opt/hdf5-static
             bash ci/hdf5-build.sh /opt/hdf5-static
-
+          CIBW_BEFORE_TEST: |
+            # there are no h5py wheels for musllinux
+            # h5py needs hdf5-dev to compile from source
+            apk add --no-cache hdf5-dev 2>/dev/null || true
+            pip install -r {project}/tests/requirement_tests.txt
         run: |
           # used by setup.py to decide if to set `FindHDF5` to use static hdf5 libraries
           export STATIC_HDF5=True
@@ -77,11 +81,6 @@ jobs:
             mkdir -p $PWD/src-cache
             ln -s $PWD/src-cache /Users/runner/work/src-cache
             bash ci/hdf5-build.sh /Users/runner/work/src-cache
-          CIBW_BEFORE_TEST: |
-            # there are no h5py wheels for musllinux
-            # h5py needs hdf5-dev to compile from source
-            apk add --no-cache hdf5-dev 2>/dev/null || true
-            pip install -r {project}/tests/requirement_tests.txt
         run: |
           # used by setup.py to decide if to set `FindHDF5` to use static hdf5 libraries
           export STATIC_HDF5=True
