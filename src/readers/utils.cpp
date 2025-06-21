@@ -25,7 +25,7 @@ namespace morphio {
 
 #endif
 
-#else // not HAS_LOCALE_EXTENSIONS
+#else  // not HAS_LOCALE_EXTENSIONS
 
 #if defined(_WIN32) || defined(__WIN32__) || defined(WIN32)
 #define str_to_long _strtol
@@ -61,7 +61,8 @@ StringToNumber::StringToNumber()
 }
 #endif
 #else
-    {}
+{
+}
 #endif
 
     StringToNumber::~StringToNumber() {
