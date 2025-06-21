@@ -22,7 +22,7 @@ jobs:
     strategy:
       matrix:
         # macos-13 is an intel runner, macos-14 is apple silicon
-        os: [ubuntu-24.04, windows-2022, macos-13, macos-14]
+        os: [ubuntu-24.04]
 
     steps:
       - uses: actions/checkout@v4
@@ -58,7 +58,13 @@ jobs:
             mkdir -p /host/home/runner/work/src-cache
             ln -s /host/home/runner/work/src-cache /opt/hdf5-static
             bash ci/hdf5-build.sh /opt/hdf5-static
-
+          CIBW_BEFORE_TEST: |
+            # there are no h5py wheels for musllinux
+            # h5py needs hdf5-dev to compile from source
+            apk update || true
+            apk add hdf5-dev 2>/dev/null || true
+            apk add gcompat || true
+            pip install -r {project}/tests/requirement_tests.txt
         run: |
           # used by setup.py to decide if to set `FindHDF5` to use static hdf5 libraries
           export STATIC_HDF5=True

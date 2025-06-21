@@ -83,3 +83,30 @@ elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "Intel")
 else()
   message(WARNING "Unexpected compiler type ${CMAKE_CXX_COMPILER_ID}")
 endif()
+
+if (LINUX)
+  # Let preprocessor know if there is support for GNU locale extensions (e.g. strtol_l)
+  # For linux distros that use alternatives to libc (e.g. musl) that do not support them
+  include(CheckCXXSourceCompiles)
+  check_cxx_source_compiles(
+      "#include <locale.h>
+       #include <stdlib.h>
+       int main() { 
+           locale_t loc = newlocale(LC_NUMERIC_MASK, \"C\", nullptr);
+           strtol_l(\"123\", nullptr, 10, loc);
+           freelocale(loc);
+           return 0; 
+       }"
+      HAS_LOCALE_EXTENSIONS
+  )
+  if(HAS_LOCALE_EXTENSIONS)
+      set(FLAGS "${FLAGS} -DHAS_LOCALE_EXTENSIONS")
+      message("Locale support: Available (Linux)")
+  else()
+      message("Locale support: Not available (Linux)")
+  endif()
+else()
+    # most windows and apple versions we target support locales
+    set(FLAGS "${FLAGS} -DHAS_LOCALE_EXTENSIONS")
+    message("Locale support: Available (${CMAKE_SYSTEM_NAME})")
+endif()
