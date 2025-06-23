@@ -4,7 +4,6 @@ requires = [
     "wheel",
     "cmake",
     "ninja",
-    "setuptools_scm[toml]>=6.2",
 ]
 
 [tool.pytest.ini_options]
