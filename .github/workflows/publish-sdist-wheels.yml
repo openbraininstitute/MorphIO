@@ -36,8 +36,7 @@ jobs:
 
       - name: Install cibuildwheel
         run: |
-          # 3.0.0 dropped support for python3.6-3.7
-          python -m pip install cibuildwheel>=3.0.0
+          python -m pip install cibuildwheel
 
       - name: Cache HDF5 On Linux/macOS
         if: runner.os == 'Linux' || runner.os == 'macOS'
