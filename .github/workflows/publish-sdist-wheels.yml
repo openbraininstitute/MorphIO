@@ -6,7 +6,7 @@ env:
 
   CIBW_BUILD_VERBOSITY: 1
   CIBW_BUILD: 'cp*'
-  CIBW_SKIP: 'cp35-* cp36-* cp37-* cp38-* *-manylinux_i686 *-win32'
+  CIBW_SKIP: 'cp38-* *-manylinux_i686 *-win32 *musllinux*'
   CIBW_BEFORE_TEST: pip install -r {project}/tests/requirement_tests.txt
   CIBW_TEST_COMMAND: pytest -s -v {project}/tests
   UNIXY_HDF5_VERSION: 1.14.3
@@ -22,7 +22,7 @@ jobs:
     strategy:
       matrix:
         # macos-13 is an intel runner, macos-14 is apple silicon
-        os: [ubuntu-24.04, windows-2022, macos-13, macos-14]
+        os: [ubuntu-24.04, ubuntu-24.04-arm, windows-2022, macos-13, macos-14]
 
     steps:
       - uses: actions/checkout@v4
@@ -62,7 +62,7 @@ jobs:
         run: |
           # used by setup.py to decide if to set `FindHDF5` to use static hdf5 libraries
           export STATIC_HDF5=True
-          export CMAKE_PREFIX_PATH=/opt/hdf5-static/install-x86_64/install/
+          export CMAKE_PREFIX_PATH=/opt/hdf5-static/install-$(uname -m)/install/
 
           CIBW_MANYLINUX_X86_64_IMAGE=manylinux2014 python -m cibuildwheel --output-dir dist
           CIBW_MANYLINUX_X86_64_IMAGE=manylinux_2_28 python -m cibuildwheel --output-dir dist
