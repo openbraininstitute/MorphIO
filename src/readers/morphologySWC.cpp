@@ -182,7 +182,11 @@ static std::vector<SWCSample> readSamples(const std::string& contents, const std
 
         sample.id = static_cast<unsigned int>(id);
 
-        sample.type = static_cast<SectionType>(tokenizer.read_int());
+        int64_t type = tokenizer.read_int();
+        if(type < 0){
+            throw RawDataError("SWC does not support negative section `type`");
+        }
+        sample.type = static_cast<SectionType>(type);
 
         for (auto& point : sample.point) {
             point = tokenizer.read_float();
@@ -352,7 +356,7 @@ class SWCBuilder
                 throw RawDataError(err_.ERROR_SELF_PARENT(sample.id));
             }
 
-            if (sample.type >= SECTION_OUT_OF_RANGE_START || sample.type <= 0) {
+            if (sample.type >= SECTION_OUT_OF_RANGE_START || sample.type < 0) {
                 details::ErrorMessages err_(path_);
                 throw RawDataError(
                     err_.ERROR_UNSUPPORTED_SECTION_TYPE(sample.lineNumber, sample.type));
