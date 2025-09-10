@@ -82,12 +82,11 @@ class NeurolucidaParser
     std::tuple<Point, floatType> parse_point(NeurolucidaLexer& lex, bool is_marker) {
         lex.expect(Token::LPAREN, "Point should start in LPAREN");
         std::array<morphio::floatType, 4> point{};  // X,Y,Z,D
-        const auto& stn = morphio::getStringToNumber();
 
         for (unsigned int i = 0; i < 4; i++) {
             const std::string s = lex.consume()->str();
             try {
-                point[i] = std::get<0>(stn.toFloat(s, 0));
+                point[i] = std::get<0>(toFloat(s, 0));
             } catch (const std::invalid_argument&) {
                 throw RawDataError(err_.ERROR_PARSING_POINT(lex.line_num(), s));
             }
@@ -378,6 +377,7 @@ Property::Properties load(const std::string& path,
                           const std::string& contents,
                           unsigned int options,
                           WarningHandler* warning_handler) {
+    LocaleGuard guard(std::locale("C"));
     NeurolucidaParser parser(path);
 
     morphio::mut::Morphology& nb_ = parser.parse(contents);
