@@ -7,7 +7,7 @@
 #include <morphio/properties.h>
 #include <morphio/soma.h>
 
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 #include <sstream>
 
 
@@ -24,7 +24,7 @@ TEST_CASE("morphio::soma") {
 
     SECTION("Volumes") {
         const auto three_point = morphio::Morphology("data/three_point_soma.swc");
-        CHECK_THAT(three_point.soma().volume(), Catch::WithinAbs(50.26, 0.01));
+        CHECK_THAT(three_point.soma().volume(), Catch::Matchers::WithinAbs(50.26, 0.01));
 
         const auto soma_cylinders = morphio::Morphology("data/soma_cylinders.swc");
         CHECK_THROWS(soma_cylinders.soma().volume());
