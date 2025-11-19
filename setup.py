@@ -72,6 +72,7 @@ if platform.system() == 'Windows':
 setup(
     name='morphio',
     author='Blue Brain Project, EPFL',
+    maintainer='Open Brain Institute',
     description='A neuron morphology IO library',
     long_description=long_description,
     long_description_content_type="text/x-rst",
@@ -79,7 +80,7 @@ setup(
     extras_require={
         'docs': ['sphinx-bluebrain-theme'],
     },
-    url='https://github.com/BlueBrain/MorphIO/',
+    url='https://github.com/openbraininstitute/MorphIO',
     ext_modules=[CMakeExtension('morphio._morphio'),
                  ],
     cmdclass={'build_ext': CMakeBuild,

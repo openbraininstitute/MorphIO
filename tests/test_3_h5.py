@@ -1,4 +1,5 @@
-# Copyright (c) 2013-2023, EPFL/Blue Brain Project
+# Copyright (c) 2013-2024, EPFL/Blue Brain Project
+# Copyright (c) 2025, Open Brain Institute
 # SPDX-License-Identifier: Apache-2.0
 from itertools import chain, repeat
 from pathlib import Path
@@ -57,7 +58,7 @@ def test_wrong_section_type():
 
 def test_v2():
     with pytest.raises(RawDataError,
-                       match='h5v2 is no longer supported, see: https://github.com/BlueBrain/MorphIO#H5v2'):
+                       match='h5v2 is no longer supported, see: https://github.com/OpenBrainInstitute/MorphIO#H5v2'):
         Morphology(H5V2_PATH / 'Neuron.h5')
 
 
