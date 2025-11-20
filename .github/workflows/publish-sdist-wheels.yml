@@ -7,15 +7,15 @@ env:
   CIBW_BUILD_VERBOSITY: 1
   CIBW_BUILD: 'cp*'
   CIBW_SKIP: 'cp38-* *-manylinux_i686 *-win32 *musllinux* cp314-*  cp314t-*'
-  #CIBW_BEFORE_TEST: pip install -r {project}/tests/requirement_tests.txt
-  CIBW_BEFORE_TEST_LINUX: |
-    yum install -y hdf5 hdf5-devel
-    pip install -r {project}/tests/requirement_tests.txt
-  CIBW_BEFORE_TEST_MACOS: |
-    brew install hdf5
-    pip install -r {project}/tests/requirement_tests.txt
-  CIBW_BEFORE_TEST_WINDOWS: |
-    pip install -r {project}/tests/requirement_tests.txt
+  CIBW_BEFORE_TEST: pip install -r {project}/tests/requirement_tests.txt
+  #CIBW_BEFORE_TEST_LINUX: |
+  #  yum install -y hdf5 hdf5-devel
+  #  pip install -r {project}/tests/requirement_tests.txt
+  #CIBW_BEFORE_TEST_MACOS: |
+  #  brew install hdf5
+  #  pip install -r {project}/tests/requirement_tests.txt
+  #CIBW_BEFORE_TEST_WINDOWS: |
+  #  pip install -r {project}/tests/requirement_tests.txt
   CIBW_TEST_COMMAND: pytest -s -v {project}/tests
   UNIXY_HDF5_VERSION: 1.14.3
   WINDOWS_HDF5: 1.14.2
