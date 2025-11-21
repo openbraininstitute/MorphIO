@@ -22,9 +22,7 @@ if [[ -z $LIBCLANG_PATH ]]; then
 fi
 
 
-VERSION=no-reserved
-PACKAGE=git+https://github.com/mgeplf/pybind11_mkdoc.git@$VERSION
-#PACKAGE=git+https://github.com/pybind/pybind11_mkdoc.git@master
+PACKAGE=git+https://github.com/pybind/pybind11_mkdoc.git@master
 
 VENV=build/venv-docstrings
 if [[ ! -d $VENV ]]; then
