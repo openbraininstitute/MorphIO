@@ -36,7 +36,7 @@ For manual installation:
 
 .. code-block:: shell
 
-   git clone git@github.com:bluebrain/morphio.git --recursive
+   git clone git@github.com:openbraininstitute/morphio.git --recursive
    cd morphio
    mkdir build && cd build
    cmake ..
