@@ -28,6 +28,7 @@ from jinja2 import Template
 
 project = "morphio"
 author = "Blue Brain Project, EPFL"
+maintainer = "Open Brain Institute"
 version = pkg_resources.get_distribution("morphio").version
 release = version
 
@@ -57,8 +58,8 @@ html_title = "MorphIO"
 html_show_sourcelink = False
 html_extra_path = ["doxygen"]
 html_theme_options = {
-    "repo_url": "https://github.com/BlueBrain/MorphIO/",
-    "repo_name": "BlueBrain/MorphIO",
+    "repo_url": "https://github.com/openbraininstitute/MorphIO",
+    "repo_name": "OpenBrainInstitute/MorphIO",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,

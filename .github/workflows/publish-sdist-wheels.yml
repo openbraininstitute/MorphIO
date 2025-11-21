@@ -64,7 +64,7 @@ jobs:
           export STATIC_HDF5=True
           export CMAKE_PREFIX_PATH=/opt/hdf5-static/install-$(uname -m)/install/
 
-          CIBW_MANYLINUX_X86_64_IMAGE=manylinux2014 python -m cibuildwheel --output-dir dist
+          # CIBW_MANYLINUX_X86_64_IMAGE=manylinux2014 python -m cibuildwheel --output-dir dist
           CIBW_MANYLINUX_X86_64_IMAGE=manylinux_2_28 python -m cibuildwheel --output-dir dist
 
       - name: Build wheels Mac OS

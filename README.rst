@@ -61,7 +61,7 @@ and then:
 Contributing
 ============
 If you want to improve the project or you see any issue, every contribution is welcome.
-Please check the `contribution guidelines <https://github.com/BlueBrain/morphio/blob/master/CONTRIBUTING.md>`_ for more
+Please check the `contribution guidelines <https://github.com/openbraininstitute/morphio/blob/master/CONTRIBUTING.md>`_ for more
 information.
 
 Acknowledgements
@@ -76,9 +76,10 @@ MorphIO is licensed under the terms of the Apache License 2.0.
 See LICENSE.txt for further details.
 
 Copyright (c) 2013-2024 Blue Brain Project/EPFL
+Copyright (c) 2025 Open Brain Institute
 
 .. |license| image:: https://img.shields.io/pypi/l/morphio
-                :target: https://github.com/BlueBrain/morphio/blob/master/COPYING.LESSER
+                :target: https://github.com/openbraininstitute/morphio/tree/master?tab=Apache-2.0-1-ov-file#readme
 
 .. |docs| image:: https://readthedocs.org/projects/morphio/badge/?version=latest
              :target: https://morphio.readthedocs.io/
