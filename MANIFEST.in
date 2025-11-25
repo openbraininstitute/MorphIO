@@ -10,7 +10,7 @@ recursive-include 3rdparty/GSL_LITE/include *
 
 include 3rdparty/HighFive/CMakeLists.txt
 recursive-include 3rdparty/HighFive/include *
-recursive-include 3rdparty/HighFive/CMake *
+recursive-include 3rdparty/HighFive/cmake *
 recursive-include 3rdparty/HighFive/doc *
 
 include 3rdparty/lexertl14/CMakeLists.txt
