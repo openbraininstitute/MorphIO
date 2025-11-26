@@ -21,8 +21,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        # macos-13 is an intel runner, macos-14 is apple silicon
-        os: [ubuntu-24.04, ubuntu-24.04-arm, windows-2022, macos-13, macos-14]
+        os: [ubuntu-24.04, ubuntu-24.04-arm, windows-2022, macos-14, macos-15-intel]
 
     steps:
       - uses: actions/checkout@v4
@@ -64,7 +63,7 @@ jobs:
           export STATIC_HDF5=True
           export CMAKE_PREFIX_PATH=/opt/hdf5-static/install-$(uname -m)/install/
 
-          CIBW_MANYLINUX_X86_64_IMAGE=manylinux2014 python -m cibuildwheel --output-dir dist
+          # CIBW_MANYLINUX_X86_64_IMAGE=manylinux2014 python -m cibuildwheel --output-dir dist
           CIBW_MANYLINUX_X86_64_IMAGE=manylinux_2_28 python -m cibuildwheel --output-dir dist
 
       - name: Build wheels Mac OS
