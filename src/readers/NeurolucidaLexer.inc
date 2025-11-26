@@ -3,15 +3,23 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+#include "../disable_error.h"
+#include "../error_message_generation.h"
+
 #include <morphio/errorMessages.h>
 #include <morphio/types.h>
+
+
+DISABLE_WARNING_PUSH
+DISABLE_WARNING(-Wnull-dereference)
 
 #include <lexertl/debug.hpp>
 #include <lexertl/generator.hpp>
 #include <lexertl/iterator.hpp>
 #include <lexertl/lookup.hpp>
 
-#include "../error_message_generation.h"
+DISABLE_WARNING_POP
+ 
 
 namespace morphio {
 namespace readers {
