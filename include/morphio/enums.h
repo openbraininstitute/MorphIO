@@ -52,9 +52,10 @@ enum AnnotationType {
 
 /** The cell family represented by morphio::Morphology. */
 enum CellFamily {
-    NEURON = 0,  //!< Neuron
-    GLIA = 1,    //!< Glia
-    SPINE = 2    //!< Spine
+    NEURON = 0,          //!< Neuron
+    GLIA = 1,            //!< Glia
+    SPINE = 2,           //!< Spine
+    MULTIPLE_SPINES = 3  //!< Multiple Spine
 };
 
 /** Soma type. */

@@ -224,7 +224,7 @@ void h5(const Morphology& morph,
 
     HighFive::Group g_metadata = h5_file.createGroup("metadata");
 
-    write_attribute(g_metadata, "version", std::array<uint32_t, 2>{1, 3});
+    write_attribute(g_metadata, "version", std::array<uint32_t, 2>{1, 4});
     write_attribute(g_metadata,
                     "cell_family",
                     std::vector<uint32_t>{static_cast<uint32_t>(morph.cellFamily())});
