@@ -10,16 +10,16 @@
 #include <morphio/types.h>
 
 
-DISABLE_WARNING_PUSH
-DISABLE_WARNING(-Wnull-dereference)
+// DISABLE_WARNING_PUSH
+// DISABLE_WARNING(-Wnull-dereference)
 
 #include <lexertl/debug.hpp>
 #include <lexertl/generator.hpp>
 #include <lexertl/iterator.hpp>
 #include <lexertl/lookup.hpp>
 
-DISABLE_WARNING_POP
- 
+// DISABLE_WARNING_POP
+
 
 namespace morphio {
 namespace readers {
