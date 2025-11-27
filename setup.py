@@ -33,7 +33,7 @@ class CMakeBuild(build_ext):
         cmake_args = ['-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=' + extdir,
                       '-DMORPHIO_VERSION_STRING=' + self.distribution.get_version(),
                       '-DMORPHIO_TESTS=OFF',
-                      '-DPYTHON_EXECUTABLE=' + sys.executable,
+                      '-DPython_EXECUTABLE=' + sys.executable,
                       '-DHIGHFIVE_EXAMPLES=OFF',
                       '-DHIGHFIVE_UNIT_TESTS=OFF',
         ]
