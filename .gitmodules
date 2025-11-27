@@ -1,6 +1,6 @@
 [submodule "3rdparty/HighFive"]
 	path = 3rdparty/HighFive
-	url = https://github.com/openbraininstitute/HighFive.git
+	url = https://github.com/highfive-devs/highfive.git
 [submodule "3rdparty/pybind11"]
 	path = binds/python/pybind11
 	url = https://github.com/pybind/pybind11.git
