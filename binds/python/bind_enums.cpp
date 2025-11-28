@@ -79,6 +79,7 @@ void bind_enums(py::module& m) {
         .value("NEURON", morphio::enums::CellFamily::NEURON)
         .value("GLIA", morphio::enums::CellFamily::GLIA)
         .value("SPINE", morphio::enums::CellFamily::SPINE)
+        .value("MULTIPLE_SPINES", morphio::enums::CellFamily::MULTIPLE_SPINES)
         .export_values();
 
 
