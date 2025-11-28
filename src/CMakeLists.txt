@@ -93,16 +93,6 @@ if (MORPHIO_ENABLE_COVERAGE)
   append_coverage_compiler_flags_to_target(morphio_obj)
 endif()
 
-#if (NOT WIN32)
-#  target_compile_options(morphio_obj
-#    PRIVATE
-#    -Wall
-#    -Wextra
-#    -Wnon-virtual-dtor
-#    -pedantic
-#    )
-#endif()
-
 add_library(morphio_static STATIC $<TARGET_OBJECTS:morphio_obj>)
 add_library(morphio_shared SHARED $<TARGET_OBJECTS:morphio_obj>)
 
