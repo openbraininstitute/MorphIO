@@ -1,4 +1,5 @@
 function(target_add_warnings target_name)
+  # MSVC
   list(APPEND MSVC_FLAGS /DH5_BUILT_AS_DYNAMIC_LIB)
   # Exception handling
   # s: Enables standard C++ stack unwinding.
@@ -7,7 +8,7 @@ function(target_add_warnings target_name)
   # get access to M_PI constant
   list(APPEND MSVC_FLAGS /D_USE_MATH_DEFINES)
 
-
+  # clang
   if(${PROJECT_NAME}_CXX_WARNINGS)
       list(APPEND CLANG_FLAGS -Weverything)
       # Using std=c++11, no need for 98 compat
@@ -30,6 +31,7 @@ function(target_add_warnings target_name)
       endif()
   endif()
 
+  # GNU
   if(${PROJECT_NAME}_CXX_WARNINGS)
     list(APPEND GNU_FLAGS -Wall)
     list(APPEND GNU_FLAGS -Wcast-align)
@@ -58,7 +60,7 @@ function(target_add_warnings target_name)
       list(APPEND GNU_FLAGS -Wclass-memaccess)
     endif()
     if(${PROJECT_NAME}_WERROR)
-      list(APPEND GNU_FLAGS  -Werror)
+      list(APPEND GNU_FLAGS -Werror)
     endif()
   endif()
 
