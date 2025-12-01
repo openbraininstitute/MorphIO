@@ -84,20 +84,13 @@ set_target_properties(morphio_obj
   CXX_EXTENSIONS NO
   )
 
+if (CMAKE_BUILD_TYPE STREQUAL "Debug" OR ${PROJECT_NAME}_CXX_WARNINGS OR ${PROJECT_NAME}_WERROR)
+    target_add_warnings(morphio_obj)
+endif()
+
 if (MORPHIO_ENABLE_COVERAGE)
   include(CodeCoverage)
   append_coverage_compiler_flags_to_target(morphio_obj)
-endif()
-
-
-if (NOT WIN32)
-  target_compile_options(morphio_obj
-    PRIVATE
-    -Wall
-    -Wextra
-    -Wnon-virtual-dtor
-    -pedantic
-    )
 endif()
 
 add_library(morphio_static STATIC $<TARGET_OBJECTS:morphio_obj>)
