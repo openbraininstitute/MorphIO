@@ -16,12 +16,13 @@ rm -rf "$BUILD_DIR"
 mkdir -p "$BUILD_DIR"
 pushd "$BUILD_DIR"
 
-cmake                           \
-    -DCMAKE_BUILD_TYPE=Debug    \
-    -DHIGHFIVE_EXAMPLES=OFF     \
-    -DHIGHFIVE_UNIT_TESTS=OFF   \
-    -G"Unix Makefiles"          \
-    ${EXTRA_OPTIONS}            \
+cmake                                       \
+    -DCMAKE_BUILD_TYPE=Debug                \
+    -DHIGHFIVE_EXAMPLES=OFF                 \
+    -DHIGHFIVE_UNIT_TESTS=OFF               \
+    -G "${CMAKE_GENERATOR:-Unix Makefiles}" \
+    ${EXTRA_OPTIONS}                        \
     ../..
 
-make -j all coverage
+cmake --build . -j --target coverage
+

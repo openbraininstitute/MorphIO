@@ -54,6 +54,11 @@ if(BUILD_BINDINGS)
   add_subdirectory(binds/python)
 endif(BUILD_BINDINGS)
 
+if (MORPHIO_TESTS)
+  enable_testing()
+  add_subdirectory(tests)
+endif()
+
 include(GNUInstallDirs)
 
 install(
@@ -71,7 +76,3 @@ install(
   FILES ${CMAKE_CURRENT_LIST_DIR}/CMake/MorphIOConfig.cmake
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/MorphIO
   )
-
-if (MORPHIO_TESTS)
-  add_subdirectory(tests)
-endif()

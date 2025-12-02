@@ -71,8 +71,7 @@ target_link_libraries(unittests
   PRIVATE
   ${TESTS_LINK_LIBRAIRIES}
 )
-
 include(Catch)
-catch_discover_tests( unittests
+catch_discover_tests(unittests
   WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
   )
