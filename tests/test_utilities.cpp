@@ -114,7 +114,6 @@ using floatTypes = std::vector<morphio::floatType>;
 
 TEST_CASE("morphio::shared_utils") {
     using namespace morphio;
-    float e = std::numeric_limits<float>::epsilon();
     SECTION("Errors") {
         const std::vector<floatType> diameters;
         const range<const floatType> d(diameters);
