@@ -132,8 +132,10 @@ TEST_CASE("morphio::shared_utils") {
         const std::vector<floatType> diameters = {1};
         CHECK(centerOfGravity(points) == points[0]);
         CHECK_THAT(maxDistanceToCenterOfGravity(points), Catch::Matchers::WithinAbs(0.0, 0.001));
-        CHECK_THAT(_somaSurface(SOMA_SINGLE_POINT, diameters, points), Catch::Matchers::WithinAbs(morphio::PI, 0.001));
-        CHECK_THAT(_somaSurface(SOMA_SINGLE_POINT, diameters, points), Catch::Matchers::WithinAbs(morphio::PI, 0.001));
+        CHECK_THAT(_somaSurface(SOMA_SINGLE_POINT, diameters, points),
+                   Catch::Matchers::WithinAbs(morphio::PI, 0.001));
+        CHECK_THAT(_somaSurface(SOMA_SINGLE_POINT, diameters, points),
+                   Catch::Matchers::WithinAbs(morphio::PI, 0.001));
     }
 
     SECTION("SOMA_NEUROMORPHO_THREE_POINT_CYLINDERS") {
@@ -141,9 +143,10 @@ TEST_CASE("morphio::shared_utils") {
         const std::vector<floatType> diameters = {0.5, 1.5, 2.5};
         Point expected{0, 0, 0};
         CHECK(centerOfGravity(points) == expected);
-        CHECK_THAT(maxDistanceToCenterOfGravity(points), Catch::Matchers::WithinAbs(std::sqrt(3.0), 0.001));
+        CHECK_THAT(maxDistanceToCenterOfGravity(points),
+                   Catch::Matchers::WithinAbs(std::sqrt(3.0), 0.001));
         CHECK_THAT(_somaSurface(SOMA_NEUROMORPHO_THREE_POINT_CYLINDERS, diameters, points),
-              Catch::Matchers::WithinAbs(0.7854, 0.001));
+                   Catch::Matchers::WithinAbs(0.7854, 0.001));
     }
 
     SECTION("SOMA_CYLINDERS") {
@@ -151,8 +154,10 @@ TEST_CASE("morphio::shared_utils") {
         const std::vector<floatType> diameters = {0.5, 1.5, 2.5};
         Point expected{1, 1, 1};
         CHECK(centerOfGravity(points) == expected);
-        CHECK_THAT(maxDistanceToCenterOfGravity(points), Catch::Matchers::WithinAbs(std::sqrt(3.0), 0.001));
-        CHECK_THAT(_somaSurface(SOMA_CYLINDERS, diameters, points), Catch::Matchers::WithinAbs(16.99076, 0.001));
+        CHECK_THAT(maxDistanceToCenterOfGravity(points),
+                   Catch::Matchers::WithinAbs(std::sqrt(3.0), 0.001));
+        CHECK_THAT(_somaSurface(SOMA_CYLINDERS, diameters, points),
+                   Catch::Matchers::WithinAbs(16.99076, 0.001));
     }
 
     SECTION("SOMA_SIMPLE_CONTOUR") {
