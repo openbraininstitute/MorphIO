@@ -4,7 +4,7 @@
  */
 #include <morphio/vector_types.h>
 
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 TEST_CASE("VectorTypes.Point", "[vector_types]") {
     using morphio::Point;
@@ -33,5 +33,5 @@ Point centerOfGravity(const T& points);
 template <typename T>
 floatType maxDistanceToCenterOfGravity(const T& points);
 
-    REQUIRE_THAT(soma.surface(), Catch::WithinAbs(1017.87604, 0.001));
+    REQUIRE_THAT(soma.surface(), Catch::Matchers::WithinAbs(1017.87604, 0.001));
 */

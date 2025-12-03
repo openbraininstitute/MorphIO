@@ -2,7 +2,9 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
+#include <catch2/matchers/catch_matchers.hpp>
+#include <catch2/matchers/catch_matchers_floating_point.hpp>
 #include <gsl/gsl-lite.hpp>
 #include <morphio/version.h>
 
@@ -105,9 +107,13 @@ TEST_CASE("morphio::join_path", "[filesystem]") {
     }
 }
 
+namespace {
+using floatTypes = std::vector<morphio::floatType>;
+}  // namespace
+
+
 TEST_CASE("morphio::shared_utils") {
     using namespace morphio;
-
     SECTION("Errors") {
         const std::vector<floatType> diameters;
         const range<const floatType> d(diameters);
@@ -125,9 +131,9 @@ TEST_CASE("morphio::shared_utils") {
         const std::vector<Point> points = {{0, 0, 0}};
         const std::vector<floatType> diameters = {1};
         CHECK(centerOfGravity(points) == points[0]);
-        CHECK(maxDistanceToCenterOfGravity(points) == Approx(0));
-        CHECK(_somaSurface(SOMA_SINGLE_POINT, diameters, points) == Approx(morphio::PI));
-        CHECK(_somaSurface(SOMA_SINGLE_POINT, diameters, points) == Approx(morphio::PI));
+        CHECK_THAT(maxDistanceToCenterOfGravity(points), Catch::Matchers::WithinAbs(0.0, 0.001));
+        CHECK_THAT(_somaSurface(SOMA_SINGLE_POINT, diameters, points), Catch::Matchers::WithinAbs(morphio::PI, 0.001));
+        CHECK_THAT(_somaSurface(SOMA_SINGLE_POINT, diameters, points), Catch::Matchers::WithinAbs(morphio::PI, 0.001));
     }
 
     SECTION("SOMA_NEUROMORPHO_THREE_POINT_CYLINDERS") {
@@ -135,9 +141,9 @@ TEST_CASE("morphio::shared_utils") {
         const std::vector<floatType> diameters = {0.5, 1.5, 2.5};
         Point expected{0, 0, 0};
         CHECK(centerOfGravity(points) == expected);
-        CHECK(maxDistanceToCenterOfGravity(points) == Approx(std::sqrt(3.0)));
-        CHECK(_somaSurface(SOMA_NEUROMORPHO_THREE_POINT_CYLINDERS, diameters, points) ==
-              Approx(0.7854));
+        CHECK_THAT(maxDistanceToCenterOfGravity(points), Catch::Matchers::WithinAbs(std::sqrt(3.0), 0.001));
+        CHECK_THAT(_somaSurface(SOMA_NEUROMORPHO_THREE_POINT_CYLINDERS, diameters, points),
+              Catch::Matchers::WithinAbs(0.7854, 0.001));
     }
 
     SECTION("SOMA_CYLINDERS") {
@@ -145,8 +151,8 @@ TEST_CASE("morphio::shared_utils") {
         const std::vector<floatType> diameters = {0.5, 1.5, 2.5};
         Point expected{1, 1, 1};
         CHECK(centerOfGravity(points) == expected);
-        CHECK(maxDistanceToCenterOfGravity(points) == Approx(std::sqrt(3.0)));
-        CHECK(_somaSurface(SOMA_CYLINDERS, diameters, points) == Approx(16.99076));
+        CHECK_THAT(maxDistanceToCenterOfGravity(points), Catch::Matchers::WithinAbs(std::sqrt(3.0), 0.001));
+        CHECK_THAT(_somaSurface(SOMA_CYLINDERS, diameters, points), Catch::Matchers::WithinAbs(16.99076, 0.001));
     }
 
     SECTION("SOMA_SIMPLE_CONTOUR") {
@@ -154,8 +160,8 @@ TEST_CASE("morphio::shared_utils") {
         const std::vector<floatType> diameters = {0.1, 0.1, 0.1};
         Point expected{1 / floatType{3}, 2 / floatType{3}, 2 / floatType{3}};
         CHECK(centerOfGravity(points) == expected);
-        CHECK(maxDistanceToCenterOfGravity(points) == Approx(1));
+        CHECK_THAT(maxDistanceToCenterOfGravity(points), Catch::Matchers::WithinAbs(1., 0.001));
         CHECK_THROWS(_somaSurface(SOMA_SIMPLE_CONTOUR, diameters, points));
     }
-    /* CHECK(_somaSurface(SOMA_SINGLE_POINT, diameters, points) == Approx(0.0)); */
+    /* CHECK(_somaSurface(SOMA_SINGLE_POINT, diameters, points) == Catch::Matchers::Approx(0.0)); */
 }
