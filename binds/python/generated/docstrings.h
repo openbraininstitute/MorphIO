@@ -1092,6 +1092,8 @@ static const char *mkd_doc_morphio_enums_CellFamily = R"doc(The cell family repr
 
 static const char *mkd_doc_morphio_enums_CellFamily_GLIA = R"doc(Glia)doc";
 
+static const char *mkd_doc_morphio_enums_CellFamily_MULTIPLE_SPINES = R"doc(Multiple Spine)doc";
+
 static const char *mkd_doc_morphio_enums_CellFamily_NEURON = R"doc(Neuron)doc";
 
 static const char *mkd_doc_morphio_enums_CellFamily_SPINE = R"doc(Spine)doc";

@@ -5,7 +5,7 @@ from itertools import chain, repeat
 from pathlib import Path
 
 import pytest
-from morphio import Morphology, RawDataError, SectionType, ostream_redirect
+from morphio import CellFamily, Morphology, RawDataError, SectionType, ostream_redirect
 from numpy.testing import assert_array_equal
 from utils import captured_output
 
@@ -80,3 +80,17 @@ def test_single_children():
         with ostream_redirect(stdout=True, stderr=True):
             neuron = Morphology(H5V1_PATH / 'two_child_unmerged.h5')
     assert len(list(neuron.iter())) == 8
+
+
+def test_new_version():
+    with pytest.raises(RawDataError):
+        Morphology(H5V1_PATH / 'h5v1.5.h5')
+
+
+def test_multiple_spines():
+    m = Morphology(H5V1_PATH / 'multiple-spines.h5')
+    assert m.version == ('h5', 1, 4)
+    assert m.cell_family == CellFamily.MULTIPLE_SPINES
+    assert len(m.root_sections) == 2  # number of spines
+    assert len(m.root_sections[0].points) == 2
+    assert m.root_sections[0].type == SectionType.axon
