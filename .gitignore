@@ -7,6 +7,7 @@ src/version.cpp
 morphio.egg-info/
 MorphIO.egg-info/
 .venv
+dist/
 
 *.pyc
 

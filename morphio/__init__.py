@@ -1,5 +1,12 @@
 import platform
 
+# morphio/__init__.py
+from importlib.metadata import version, PackageNotFoundError
+
+try:
+    __version__ = version("morphio")
+except PackageNotFoundError:
+    __version__ = "unknown"
 
 if platform.system() == "Windows":
     # the plan is to leverage the h5py inclusion of hdf5 dll; this way
