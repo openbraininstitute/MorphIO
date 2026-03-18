@@ -66,7 +66,7 @@ with open('README.rst', 'r', encoding='utf-8') as f:
     long_description = f.read()
 
 if platform.system() == 'Windows':
-    install_requires += ['h5py>=3,<4',   # use h5py's hdf5 install so we don't have to redistribute hdf5
+    install_requires += ['h5py',   # use h5py's hdf5 install so we don't have to redistribute hdf5
                          ]
 
 setup(
