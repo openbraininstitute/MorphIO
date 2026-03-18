@@ -4,7 +4,7 @@
 #include <cmath>  // M_PI
 #include <vector>
 
-#define gsl_CONFIG_ALLOWS_SPAN_COMPARISON 1 
+#define gsl_CONFIG_ALLOWS_SPAN_COMPARISON 1
 #include <gsl-lite/gsl-lite.hpp>
 
 namespace morphio {
