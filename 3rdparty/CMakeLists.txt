@@ -15,7 +15,7 @@ if (NOT EXTERNAL_HIGHFIVE)
 endif()
 
 add_subdirectory(GSL_LITE)
-target_include_directories(gsl-lite SYSTEM INTERFACE)
+target_include_directories(gsl-lite-v1 SYSTEM INTERFACE)
 
 add_library(lexertl INTERFACE)
 target_include_directories(lexertl SYSTEM INTERFACE lexertl14/include)
