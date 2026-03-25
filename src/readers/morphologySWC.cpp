@@ -352,7 +352,7 @@ class SWCBuilder
                 throw RawDataError(err_.ERROR_SELF_PARENT(sample.id));
             }
 
-            if (sample.type >= SECTION_OUT_OF_RANGE_START || sample.type <= 0) {
+            if (sample.type >= SECTION_OUT_OF_RANGE_START || sample.type < 0) {
                 details::ErrorMessages err_(path_);
                 throw RawDataError(
                     err_.ERROR_UNSUPPORTED_SECTION_TYPE(sample.lineNumber, sample.type));

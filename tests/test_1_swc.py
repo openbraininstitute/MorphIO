@@ -660,3 +660,13 @@ def test_WarningHandlerCollector():
     Morphology("", extension="swc", warning_handler=warnings1)
     assert len(warnings0.get_all()) == 2
     assert len(warnings1.get_all()) == 1
+
+
+def test_0_defined():
+    contents =('''
+1 1 5 2 2 3 -1
+2 0 4 2 1 1 1
+''')
+    m = Morphology(contents, "swc")
+    assert m.sections[0].type == morphio.SectionType.undefined
+
