@@ -93,7 +93,7 @@ class SWCTokenizer
     int64_t read_int() {
         advance_to_number();
         try {
-            auto parsed = stn_.toInt(contents_, pos_);
+            auto parsed = toInt(contents_, pos_);
             pos_ = std::get<1>(parsed);
             return std::get<0>(parsed);
         } catch (std::invalid_argument& e) {
@@ -103,7 +103,7 @@ class SWCTokenizer
 
     floatType read_float() {
         advance_to_number();
-        auto parsed = stn_.toFloat(contents_, pos_);
+        auto parsed = toFloat(contents_, pos_);
         pos_ = std::get<1>(parsed);
         return std::get<0>(parsed);
     }
@@ -137,7 +137,6 @@ class SWCTokenizer
     size_t pos_ = 0;
     size_t line_ = 1;
     std::string contents_;
-    StringToNumber stn_;
     std::string path_;
 };
 
@@ -540,6 +539,7 @@ Property::Properties load(const std::string& path,
                           const std::string& contents,
                           unsigned int options,
                           std::shared_ptr<WarningHandler>& warning_handler) {
+    LocaleGuard guard_{std::locale("C")};
     auto properties =
         details::SWCBuilder(path, warning_handler.get(), options).buildProperties(contents);
 
