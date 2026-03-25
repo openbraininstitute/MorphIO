@@ -2,7 +2,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 #include <highfive/H5File.hpp>
 #include <morphio/vasc/section.h>
