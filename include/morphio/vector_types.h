@@ -4,12 +4,13 @@
 #include <cmath>  // M_PI
 #include <vector>
 
-#include <gsl/gsl-lite.hpp>
+#define gsl_CONFIG_ALLOWS_SPAN_COMPARISON 1
+#include <gsl-lite/gsl-lite.hpp>
 
 namespace morphio {
 
 template <typename T>
-using range = gsl::span<T>;
+using range = gsl_lite::span<T>;
 
 #ifdef MORPHIO_USE_DOUBLE
 using floatType = double;

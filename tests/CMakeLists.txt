@@ -1,3 +1,17 @@
+Include(FetchContent)
+FetchContent_Declare(
+  Catch2
+  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+  GIT_TAG        v3.11.0
+)
+
+FetchContent_MakeAvailable(Catch2)
+
+target_compile_options(Catch2 PRIVATE
+    $<$<COMPILE_LANGUAGE:CXX>:-Wno-all>
+    $<$<COMPILE_LANGUAGE:CXX>:-Wno-error>
+)
+
 set(TESTS_SRC
         main.cpp
         test_collection.cpp
@@ -13,7 +27,7 @@ set(TESTS_SRC
         test_utilities.cpp
         test_vasculature_morphology.cpp
         )
-set(TESTS_LINK_LIBRAIRIES morphio_static HighFive Catch2::Catch2)
+set(TESTS_LINK_LIBRAIRIES morphio_static HighFive Catch2::Catch2WithMain)
 
 if(APPLE)
   add_definitions("-DLIBCXX_INSTALL_FILESYSTEM_LIBRARY=YES")
@@ -33,11 +47,10 @@ set_target_properties(unittests
   )
 
 target_compile_options(unittests PRIVATE
-  $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
-      # don't warn about mixing floats and doubles in the tests, we since we test both for
-      # morphio::floatType = {float, double}, we have to cast floating point number
-      -Wno-implicit-float-conversion>
-  )
+    # don't warn about mixing floats and doubles in the tests, we since we test both for
+    # morphio::floatType = {float, double}, we have to cast floating point number
+    -Wno-implicit-float-conversion
+)
 
 if (MORPHIO_ENABLE_COVERAGE)
   include(CodeCoverage)
@@ -53,9 +66,7 @@ target_link_libraries(unittests
   PRIVATE
   ${TESTS_LINK_LIBRAIRIES}
 )
-
-if (NOT EXTERNAL_CATCH2)
-  catch_discover_tests( unittests
-      WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
-      )
-endif()
+include(Catch)
+catch_discover_tests(unittests
+  WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+  )

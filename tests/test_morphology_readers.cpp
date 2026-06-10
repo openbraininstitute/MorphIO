@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 #include "../src/readers/morphologyHDF5.h"
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 #include <locale>
 
 #include <highfive/H5File.hpp>
@@ -164,7 +164,7 @@ TEST_CASE("LoadH5MorphologySingleNeurite", "[morphology]") {
         const morphio::Morphology m("data/h5/v1/single-neurite.h5");
         REQUIRE(m.soma().points().empty());
         REQUIRE(m.points().size() == 3);
-        REQUIRE_THAT(m.points()[0][0], Catch::WithinAbs(4., 0.0001));
+        REQUIRE_THAT(m.points()[0][0], Catch::Matchers::WithinAbs(4., 0.0001));
     }
 }
 

@@ -18,3 +18,7 @@ target_link_libraries(_morphio
     PRIVATE morphio_static
     PRIVATE pybind11::module
 )
+
+if (CMAKE_BUILD_TYPE STREQUAL "Debug" OR ${PROJECT_NAME}_CXX_WARNINGS OR ${PROJECT_NAME}_WERROR)
+    target_add_warnings(_morphio)
+endif()
