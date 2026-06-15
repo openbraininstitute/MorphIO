@@ -12,3 +12,6 @@ testpaths = ["tests"]
 [tool.setuptools_scm]
 version_scheme = "guess-next-dev"
 local_scheme = "no-local-version"
+
+[tool.cibuildwheel.windows]
+repair-wheel-command = "delvewheel repair --exclude hdf5.dll -w {dest_dir} {wheel}"
