@@ -105,7 +105,7 @@ the main (upstream) repository:
     git pull --ff upstream master
     ```
 
-[github]: https://github.com/BlueBrain/MorphIO
+[github]: https://github.com/openbraininstitute/morphio
 
 # Development Environment
 

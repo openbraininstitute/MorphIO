@@ -2,7 +2,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 
 #include <highfive/H5File.hpp>
 #include <morphio/vasc/section.h>
@@ -61,7 +61,7 @@ TEST_CASE("vasculature_section_connectivity", "[vasculature]") {
 
     std::vector<std::array<unsigned int, 2>> expected_connectivity(n_connections);
 
-    dset.read(expected_connectivity.front().data());
+    dset.read(expected_connectivity);
 
     REQUIRE(section_connectivity == expected_connectivity);
 }

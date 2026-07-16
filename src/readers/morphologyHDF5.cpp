@@ -1,4 +1,5 @@
-/* Copyright (c) 2013-2023, EPFL/Blue Brain Project
+/* Copyright (c) 2013-2024, EPFL/Blue Brain Project
+ * Copyright (c) 2025, Open Brain Institute
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -139,7 +140,8 @@ void MorphologyHDF5::_readMetadata() {
         if (_group.exist(_g_v2root)) {
             throw RawDataError(
                 "Error in " + _uri +
-                "\nh5v2 is no longer supported, see: https://github.com/BlueBrain/MorphIO#H5v2");
+                "\nh5v2 is no longer supported, see: https://github.com/openbraininstitute/"
+                "MorphIO#H5v2");
         }
         throw RawDataError("Missing " + _d_points + " or " + _d_structure +
                            " datasets, cannot load morphology without them");
@@ -166,8 +168,7 @@ void MorphologyHDF5::_readMetadata() {
                                    "\nUnsupported h5 version: " + std::to_string(majorVersion) +
                                    "." + std::to_string(minorVersion) +
                                    " See "
-                                   "https://bbpteam.epfl.ch/documentation/projects/"
-                                   "Morphology%20Documentation/latest/"
+                                   "https://morphology-documentation.readthedocs.io/en/latest/"
                                    "index.html for the list of supported versions.");
             }
         } else {
@@ -197,7 +198,7 @@ void MorphologyHDF5::_readPoints(int firstSectionOffset) {
     std::vector<std::array<floatType, pointColumns>> hdf5Data(numberPoints);
 
     if (!hdf5Data.empty()) {
-        pointsDataSet.read(hdf5Data.front().data());
+        pointsDataSet.read(hdf5Data);
     }
 
     const bool hasSoma = firstSectionOffset != 0;
@@ -254,7 +255,7 @@ int MorphologyHDF5::_readSections() {
 
     std::vector<std::array<int, structureV1Columns>> vec(dims[0]);
     if (dims[0] > 0) {
-        structure.read(vec.front().data());
+        structure.read(vec);
     }
 
     assert(!vec.empty());

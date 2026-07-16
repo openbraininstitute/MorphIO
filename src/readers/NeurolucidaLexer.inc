@@ -149,7 +149,6 @@ public:
         rules_.push("Splat[0-9]*", +Token::MARKER);
         rules_.push("Flower[0-9]*", +Token::MARKER);
         rules_.push("Circle[0-9]*", +Token::MARKER);
-        rules_.push("Flower[0-9]*", +Token::MARKER);
         rules_.push("TriStar[0-9]*", +Token::MARKER);
         rules_.push("OpenStar[0-9]*", +Token::MARKER);
         rules_.push("Asterisk[0-9]*", +Token::MARKER);

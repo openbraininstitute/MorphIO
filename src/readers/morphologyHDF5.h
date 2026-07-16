@@ -1,4 +1,5 @@
-/* Copyright (c) 2013-2023, EPFL/Blue Brain Project
+/* Copyright (c) 2013-2024, EPFL/Blue Brain Project
+ * Copyright (c) 2025, Open Brain Institute
  *
  * SPDX-License-Identifier: Apache-2.0
  */

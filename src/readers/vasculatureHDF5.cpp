@@ -33,7 +33,6 @@ vasculature::property::Properties VasculatureHDF5::load() {
     _readDatasets();
     _readSections();
     _readPoints();
-    _readSectionTypes();
     _readConnectivity();
 
     return _properties;
@@ -68,9 +67,13 @@ void VasculatureHDF5::_readPoints() {
     auto& points = _properties.get_mut<vasculature::property::Point>();
     auto& diameters = _properties.get_mut<vasculature::property::Diameter>();
 
-    std::vector<std::vector<morphio::floatType>> vec;
-    vec.resize(_pointsDims[0]);
+    std::vector<std::array<morphio::floatType, 4>> vec;
+    vec.reserve(_pointsDims[0]);
     _points->read(vec);
+
+    points.reserve(_pointsDims[0]);
+    diameters.reserve(_pointsDims[0]);
+
     for (const auto& p : vec) {
         points.push_back({p[0], p[1], p[2]});
         diameters.push_back(p[3]);
@@ -79,29 +82,33 @@ void VasculatureHDF5::_readPoints() {
 
 void VasculatureHDF5::_readSections() {
     auto& sections = _properties.get_mut<vasculature::property::VascSection>();
-    auto selection = _sections->select({0, 0}, {_sectionsDims[0], 1});
-
-    std::vector<unsigned int> vec;
-    vec.resize(_sectionsDims[0]);
-    selection.read(vec);
-
-    for (auto p : vec) {
-        sections.push_back(p);
-    }
-}
-
-void VasculatureHDF5::_readSectionTypes() {
     auto& types = _properties.get_mut<vasculature::property::SectionType>();
 
-    auto selection = _sections->select({0, 1}, {_sectionsDims[0], 1});
-    types.resize(_sectionsDims[0]);
-    selection.read(types);
-    for (int type : types) {
+    std::vector<std::array<int, 2>> vec;
+    vec.reserve(_sectionsDims[0]);
+    _sections->read(vec);
+
+    sections.reserve(_sectionsDims[0]);
+    types.reserve(_sectionsDims[0]);
+
+    unsigned int element = 0;
+    for (const auto p : vec) {
+        int section_offset = std::get<0>(p);
+        int type = std::get<1>(p);
+
+        if (section_offset < 0) {
+            const auto err = details::ErrorMessages(_uri);
+            throw morphio::RawDataError(err.ERROR_NEGATIVE_ID(element));
+        }
+        sections.push_back(static_cast<unsigned int>(section_offset));
+
         if (type > SECTION_CUSTOM || type < 0) {
             const auto err = details::ErrorMessages(_uri);
             throw morphio::RawDataError(err.ERROR_UNSUPPORTED_VASCULATURE_SECTION_TYPE(
                 0, static_cast<VascularSectionType>(type)));
         }
+        types.push_back(static_cast<VascularSectionType>(type));
+        element++;
     }
 }
 

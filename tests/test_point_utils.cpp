@@ -4,7 +4,7 @@
  */
 #include "../src/point_utils.h"
 
-#include <catch2/catch.hpp>
+#include <catch2/catch_all.hpp>
 #include <sstream>  // std::stringstream
 
 
@@ -15,7 +15,7 @@ TEST_CASE("morphio::Point") {
     std::vector<Point> points = {p, p, p};
 
     CHECK(subtract(p, p) == morphio::Point{0, 0, 0});
-    REQUIRE_THAT(euclidean_distance(p, p), Catch::WithinAbs(0, 0.001));
+    REQUIRE_THAT(euclidean_distance(p, p), Catch::Matchers::WithinAbs(0, 0.001));
     CHECK(dumpPoint(p) == "10 10 10");
     CHECK(dumpPoints(points) == "10 10 10\n10 10 10\n10 10 10\n");
 
