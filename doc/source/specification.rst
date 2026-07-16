@@ -1,7 +1,7 @@
 Specification
 =============
 Description of how MorphIO sees morphologies. MorphIO supports :ref:`.asc <specification-neurolucida>` (Neurolucida),
-`.h5`_ (H5 version 1) and `.swc`_ extensions. A morphology is represented as a soma with neurites. Either soma or
+`.h5`_ (H5 version 1) and `.swc` extensions (see `.swc spec`_ and `Neuronland`_). A morphology is represented as a soma with neurites. Either soma or
 neurites can be absent. Neurite is a tree of sections. Section is composed of segments where segment is made of points.
 Lets start describing them from the smallest to the biggest entity.
 
@@ -222,7 +222,8 @@ Custom annotations
 Custom annotations are not supported.
 
 
-.. _`.h5`: https://morphology-documentation.readthedocs.io/en/latest/h5v1.html 
-.. _`.swc`: http://www.neuronland.org/NLMorphologyConverter/MorphologyFormats/SWC/Spec.html
+.. _`.h5`: https://morphology-documentation.readthedocs.io/en/latest/h5v1.html
+.. _`Neuronland`: http://www.neuronland.org/NLMorphologyConverter/MorphologyFormats/SWC/Spec.html
+.. _`.swc spec`: https://swc-specification.readthedocs.io/en/latest/swc.html
 .. _`NeuroMorpho`: http://neuromorpho.org/SomaFormat.html
 .. _`conical frustums`: http://mathworld.wolfram.com/ConicalFrustum.html
