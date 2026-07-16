@@ -55,7 +55,7 @@ enum CellFamily {
     NEURON = 0,          //!< Neuron
     GLIA = 1,            //!< Glia
     SPINE = 2,           //!< Spine
-    MULTIPLE_SPINES = 3  //!< Multiple Spine
+    MULTIPLE_SPINES = 3  //!< Multiple Spines
 };
 
 /** Soma type. */

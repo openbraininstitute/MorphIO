@@ -1092,7 +1092,7 @@ static const char *mkd_doc_morphio_enums_CellFamily = R"doc(The cell family repr
 
 static const char *mkd_doc_morphio_enums_CellFamily_GLIA = R"doc(Glia)doc";
 
-static const char *mkd_doc_morphio_enums_CellFamily_MULTIPLE_SPINES = R"doc(Multiple Spine)doc";
+static const char *mkd_doc_morphio_enums_CellFamily_MULTIPLE_SPINES = R"doc(Multiple Spines)doc";
 
 static const char *mkd_doc_morphio_enums_CellFamily_NEURON = R"doc(Neuron)doc";
 
@@ -1169,6 +1169,8 @@ static const char *mkd_doc_morphio_enums_SectionType_SECTION_GLIA_PROCESS = R"do
 static const char *mkd_doc_morphio_enums_SectionType_SECTION_OUT_OF_RANGE_START = R"doc()doc";
 
 static const char *mkd_doc_morphio_enums_SectionType_SECTION_SOMA = R"doc(Neuron cell body)doc";
+
+static const char *mkd_doc_morphio_enums_SectionType_SECTION_SPINE = R"doc()doc";
 
 static const char *mkd_doc_morphio_enums_SectionType_SECTION_SPINE_HEAD = R"doc()doc";
 
