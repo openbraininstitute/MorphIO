@@ -70,6 +70,9 @@ html_theme_options = {
 autodoc_default_options = {"members": True, "imported-members": True}
 autodoc_docstring_signature = True
 
+# work around changes to `sphinx` 9 that are incompatible with `sphinx-bluebrain-theme`
+autodoc_use_legacy_class_based = True
+
 
 def doxygen_build(app):
     """Build the doxygen output for inclusion in the sphinx docs."""
