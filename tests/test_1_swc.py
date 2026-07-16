@@ -475,16 +475,13 @@ def test_unsupported_section_type():
                   2 3 0 0 2 0.5 1
                   3 -1 0 0 3 0.5 2  # <-- -1 is unsupported section type
                   ''')
-
-    with pytest.raises(RawDataError, match=':3:error') as obj:
+    with pytest.raises(RawDataError, match='SWC does not support negative section `type`'):
         Morphology(content, extension='swc')
-    assert obj.match('Unsupported section type: -1')
 
     content = ('''1 1 0 4 0 3.0 -1
                   2 3 0 0 2 0.5 1
                   3 20 0 0 3 0.5 2  # <-- 20 is unsupported section type
                   ''')
-
     with pytest.raises(RawDataError, match=':3:error') as obj:
         Morphology(content, extension='swc')
     assert obj.match('Unsupported section type: 20')
@@ -660,3 +657,13 @@ def test_WarningHandlerCollector():
     Morphology("", extension="swc", warning_handler=warnings1)
     assert len(warnings0.get_all()) == 2
     assert len(warnings1.get_all()) == 1
+
+
+def test_0_defined():
+    contents =('''
+1 1 5 2 2 3 -1
+2 0 4 2 1 1 1
+''')
+    m = Morphology(contents, "swc")
+    assert m.sections[0].type == morphio.SectionType.undefined
+
