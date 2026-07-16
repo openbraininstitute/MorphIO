@@ -79,6 +79,7 @@ enum SectionType {
     SECTION_GLIA_PERIVASCULAR_PROCESS = 2,  // Note: overlaps with SECTION_AXON
     SECTION_GLIA_PROCESS = 3,               // Note: overlaps with SECTION_DENDRITE
 
+    SECTION_SPINE = 1,  // Note: overlaps with SECTION_SOMA
     SECTION_SPINE_NECK = 2,  // Note: overlaps with SECTION_AXON
     SECTION_SPINE_HEAD = 3,  // Note: overlaps with SECTION_DENDRITE
 

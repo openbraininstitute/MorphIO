@@ -88,6 +88,10 @@ def test_new_version():
 
 
 def test_multiple_spines():
+    assert int(SectionType.spine) == 1
+    assert int(SectionType.spine_neck) == 2
+    assert int(SectionType.spine_head) == 3
+
     m = Morphology(H5V1_PATH / 'multiple-spines.h5')
     assert m.version == ('h5', 1, 4)
     assert m.cell_family == CellFamily.MULTIPLE_SPINES
