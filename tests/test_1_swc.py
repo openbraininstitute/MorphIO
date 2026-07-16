@@ -475,16 +475,13 @@ def test_unsupported_section_type():
                   2 3 0 0 2 0.5 1
                   3 -1 0 0 3 0.5 2  # <-- -1 is unsupported section type
                   ''')
-
-    with pytest.raises(RawDataError, match=':3:error') as obj:
+    with pytest.raises(RawDataError, match='SWC does not support negative section `type`'):
         Morphology(content, extension='swc')
-    assert obj.match('Unsupported section type: -1')
 
     content = ('''1 1 0 4 0 3.0 -1
                   2 3 0 0 2 0.5 1
                   3 20 0 0 3 0.5 2  # <-- 20 is unsupported section type
                   ''')
-
     with pytest.raises(RawDataError, match=':3:error') as obj:
         Morphology(content, extension='swc')
     assert obj.match('Unsupported section type: 20')
