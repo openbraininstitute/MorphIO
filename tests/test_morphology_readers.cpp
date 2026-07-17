@@ -81,7 +81,7 @@ TEST_CASE("LoadH5Morphology", "[morphology]") {
     }
 
     {  // unsupported version number
-        CHECK_THROWS_AS(morphio::Morphology("data/h5/v1/h5v1.4.h5"), morphio::RawDataError);
+        CHECK_THROWS_AS(morphio::Morphology("data/h5/v1/h5v1.5.h5"), morphio::RawDataError);
     }
 
     {  // incorrect points shape

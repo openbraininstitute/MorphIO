@@ -47,6 +47,7 @@ void bind_enums(py::module& m) {
         .value("glia_perivascular_process",
                morphio::enums::SectionType::SECTION_GLIA_PERIVASCULAR_PROCESS)
         .value("glia_process", morphio::enums::SectionType::SECTION_GLIA_PROCESS)
+        .value("spine", morphio::enums::SectionType::SECTION_SPINE)
         .value("spine_head", morphio::enums::SectionType::SECTION_SPINE_HEAD)
         .value("spine_neck", morphio::enums::SectionType::SECTION_SPINE_NECK)
         .value("all", morphio::enums::SectionType::SECTION_ALL)
@@ -79,6 +80,7 @@ void bind_enums(py::module& m) {
         .value("NEURON", morphio::enums::CellFamily::NEURON)
         .value("GLIA", morphio::enums::CellFamily::GLIA)
         .value("SPINE", morphio::enums::CellFamily::SPINE)
+        .value("MULTIPLE_SPINES", morphio::enums::CellFamily::MULTIPLE_SPINES)
         .export_values();
 
 

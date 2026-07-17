@@ -20,7 +20,8 @@ def available_morphologies():
         "glia",
         "mitochondria",
         "endoplasmic-reticulum",
-        "simple-dendritric-spine"
+        "simple-dendritric-spine",
+        "multiple-spines",
     ]
 
 
@@ -37,6 +38,13 @@ def check_load_from_collection(collection):
 
         morph = collection.load(morph_name, mutable=True)
         assert isinstance(morph, morphio.mut.Morphology)
+
+    m = collection.load("multiple-spines")
+    assert m.version == ('h5', 1, 4)
+    assert m.cell_family == morphio.CellFamily.MULTIPLE_SPINES
+    assert len(m.root_sections) == 2  # number of spines
+    assert len(m.root_sections[0].points) == 2
+    assert m.root_sections[0].type == morphio.SectionType.axon
 
 @pytest.mark.parametrize("collection_path", COLLECTION_PATHS)
 def test_load_from_collection_with_context(collection_path):

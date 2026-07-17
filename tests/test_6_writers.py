@@ -99,7 +99,7 @@ def test_write_basic(tmp_path):
             [s.type for s in loaded_morph.root_sections]
 
     h5_path = tmp_path / "test_write.h5"
-    assert ImmutMorphology(h5_path).version == ('h5', 1, 3)
+    assert ImmutMorphology(h5_path).version == ('h5', 1, 4)
     with h5py.File(h5_path, 'r') as h5_file:
         assert '/perimeters' not in h5_file.keys()
 
