@@ -8,3 +8,11 @@ requires = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.setuptools_scm]
+version_scheme = "guess-next-dev"
+local_scheme = "no-local-version"
+
+[tool.cibuildwheel.windows]
+# the hdf5.dll is supplied by h5py, so it is excluded from the `repair` step
+repair-wheel-command = "delvewheel repair --exclude hdf5.dll -w {dest_dir} {wheel}"
