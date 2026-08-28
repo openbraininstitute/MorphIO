@@ -14,11 +14,11 @@ submodules:
 # doesn't find HDF5, if the hdf5 headers are available by the system, then
 # it works
 build:
-  os: "ubuntu-20.04"
+  os: "ubuntu-24.04"
   apt_packages:
     - libhdf5-dev
   tools:
-    python: "3.9"
+    python: "3.12"
 
 sphinx:
   configuration: doc/source/conf.py

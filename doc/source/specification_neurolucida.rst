@@ -12,7 +12,7 @@ Soma
 * Files without a soma are valid.
 * Multiple soma
   ASC files with *multiple* CellBody tags will raise an error.
-  `Unit test <https://github.com/BlueBrain/MorphIO/blob/5e111f3141f7a1ee72e0260111ce569741d80acb/tests/test_neurolucida.py#L58>`__
+  `Unit test <https://github.com/openbraininstitute/MorphIO/blob/5e111f3141f7a1ee72e0260111ce569741d80acb/tests/test_neurolucida.py#L58>`__
 
 Duplicate points
 ----------------
@@ -51,8 +51,8 @@ child sections if not already present. That means these two representations are 
      )
    )
 
-`Unit test <https://github.com/BlueBrain/MorphIO/blob/a60b52dfe403ef289455ee2221c1b4fce6418978/tests/test_neurolucida.py#L162>`__\ ,
-`Unit test <https://github.com/BlueBrain/MorphIO/blob/a60b52dfe403ef289455ee2221c1b4fce6418978/tests/test_writers.py#L191>`__
+`Unit test <https://github.com/openbraininstitute/MorphIO/blob/a60b52dfe403ef289455ee2221c1b4fce6418978/tests/test_neurolucida.py#L162>`__\ ,
+`Unit test <https://github.com/openbraininstitute/MorphIO/blob/a60b52dfe403ef289455ee2221c1b4fce6418978/tests/test_writers.py#L191>`__
 
 Note: As of today, it is **OK** for a duplicated point to have a different radius than the
 original point.
@@ -60,7 +60,7 @@ original point.
 When writing the file the duplicate point is **not** automatically added. However, a warning will
 be displayed if the first point of a section differs from the last point of the previous section.
 
-`Unit test <https://github.com/BlueBrain/MorphIO/blob/a60b52dfe403ef289455ee2221c1b4fce6418978/tests/test_mut.py#L125>`__
+`Unit test <https://github.com/openbraininstitute/MorphIO/blob/a60b52dfe403ef289455ee2221c1b4fce6418978/tests/test_mut.py#L125>`__
 
 
 Single point section
@@ -89,12 +89,12 @@ is a duplicate of the parent section last point or not.
          (3 -10 0 2)
        )
 
-    See `here <https://github.com/BlueBrain/MorphIO/blob/5e111f3141f7a1ee72e0260111ce569741d80acb/tests/test_neurolucida.py#L350>`__
-    and `here for a more complex case <https://github.com/BlueBrain/MorphIO/blob/5e111f3141f7a1ee72e0260111ce569741d80acb/tests/test_neurolucida.py#L374>`__
+    See `here <https://github.com/openbraininstitute/MorphIO/blob/5e111f3141f7a1ee72e0260111ce569741d80acb/tests/test_neurolucida.py#L350>`__
+    and `here for a more complex case <https://github.com/openbraininstitute/MorphIO/blob/5e111f3141f7a1ee72e0260111ce569741d80acb/tests/test_neurolucida.py#L374>`__
 
 
 * If the point is *not* a duplicate, then the duplicate point is prepended at the beggining of
-    the section and the section is considered perfectly valid. See `here <https://github.com/BlueBrain/MorphIO/blob/5e111f3141f7a1ee72e0260111ce569741d80acb/tests/test_neurolucida.py#L253>`__
+    the section and the section is considered perfectly valid. See `here <https://github.com/openbraininstitute/MorphIO/blob/5e111f3141f7a1ee72e0260111ce569741d80acb/tests/test_neurolucida.py#L253>`__
 
     .. code-block:: hspec
     
@@ -160,7 +160,7 @@ will be interpreted the same as:
     )
    )
 
-`Unit test <https://github.com/BlueBrain/MorphIO/blob/5e111f3141f7a1ee72e0260111ce569741d80acb/tests/test_neurolucida.py#L285>`__
+`Unit test <https://github.com/openbraininstitute/MorphIO/blob/5e111f3141f7a1ee72e0260111ce569741d80acb/tests/test_neurolucida.py#L285>`__
 
 Empty siblings
 **************
