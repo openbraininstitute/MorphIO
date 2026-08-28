@@ -1,9 +1,9 @@
 ### Local doc building
 
-For building documentation locally, make sure you have `sphinx-bluebrain-theme` and `doxygen`.
+For building documentation locally, make sure you have `obi-sphinx-theme` and `doxygen`.
 
 ```bash
-pip install sphinx-bluebrain-theme
+pip install obi-sphinx-theme
 ```
 
 and

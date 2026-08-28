@@ -78,7 +78,7 @@ setup(
     long_description_content_type="text/x-rst",
     install_requires=install_requires,
     extras_require={
-        'docs': ['sphinx-bluebrain-theme'],
+        'docs': ['sphinx>=8.2,<10', 'obi-sphinx-theme>=2.0.0'],
     },
     url='https://github.com/openbraininstitute/MorphIO',
     ext_modules=[CMakeExtension('morphio._morphio'),
