@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 from pathlib import Path
-import pkg_resources
+from importlib.metadata import version as package_version
 import re
 import shutil
 import subprocess
@@ -29,7 +29,7 @@ from jinja2 import Template
 project = "morphio"
 author = "Open Brain Institute"
 maintainer = "Open Brain Institute"
-version = pkg_resources.get_distribution("morphio").version
+version = package_version("morphio")
 release = version
 
 # -- General configuration ---------------------------------------------------
