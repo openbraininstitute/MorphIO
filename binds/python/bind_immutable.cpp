@@ -108,6 +108,10 @@ void bind_morphology(py::module& m) {
             [](const morphio::Morphology& obj) { return obj.points().size(); },
             "Returns the number of points from all sections (soma points are not included)")
         .def_property_readonly(
+            "n_sections",
+            [](const morphio::Morphology& obj) { return obj.sectionTypes().size(); },
+            "Returns the number of sections (soma is not included)")
+        .def_property_readonly(
             "diameters",
             [](const morphio::Morphology& morpho) {
                 const auto& data = morpho.diameters();

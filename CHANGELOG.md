@@ -1,3 +1,8 @@
+Unreleased
+==========
+New Features:
+* `n_sections` property for immutable Morphology and Vasculature
+
 v3.4.0
 ======
 Improvements:

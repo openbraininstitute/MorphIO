@@ -41,14 +41,15 @@ def test_components_vasculature():
                                         1.96932483, 1.96932483, 1.96932483, 1.96932483, 1.96932483,
                                         1.96932483, 2.15068388]))
 
-    assert len(morphology.sections) == 3080
+    assert morphology.n_sections == 3080
+    assert morphology.n_sections == len(morphology.sections)
+    assert morphology.n_sections == len(morphology.section_types)
     assert len(morphology.points) == 55807
     assert morphology.n_points == len(morphology.points)
     assert len(morphology.diameters) == 55807
     assert_array_almost_equal(
         morphology.diameters[-5:],
         np.array([0.78039801, 0.78039801, 0.78039801, 2.11725187, 2.11725187]))
-    assert len(morphology.section_types) == 3080
     assert morphology.section(0).n_points == len(morphology.section(0).points)
     assert len(morphology.section(0).predecessors) == 0
     assert len(morphology.section(0).successors) == 2
