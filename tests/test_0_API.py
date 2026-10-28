@@ -46,6 +46,7 @@ def test_mut_immut_have_same_methods():
         "perimeters",
         "points",
         "n_points",
+        "n_sections",
         "section_offsets",
         "as_mutable",
     }

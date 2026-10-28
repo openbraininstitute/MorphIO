@@ -46,7 +46,14 @@ def test_heterogeneous_sections():
 def test_components():
     for cell in CELLS.values():
         assert cell.n_points == len(cell.points)
+        assert cell.n_sections == 6
+        assert cell.n_sections == len(cell.sections)
+        assert cell.n_sections == len(cell.section_types)
         assert cell.section(0).n_points == len(cell.section(0).points)
+
+    empty = morphio.mut.Morphology().as_immutable()
+    assert empty.n_sections == 0
+    assert empty.n_points == 0
 
 
 def test_is_root():

@@ -69,6 +69,10 @@ void bind_vasculature(py::module& m) {
             "n_points",
             [](const morphio::vasculature::Vasculature& obj) { return obj.points().size(); },
             "Returns the number of points from all sections")
+        .def_property_readonly(
+            "n_sections",
+            [](const morphio::vasculature::Vasculature& obj) { return obj.sectionTypes().size(); },
+            "Returns the number of sections")
 
         .def_property_readonly(
             "diameters",
